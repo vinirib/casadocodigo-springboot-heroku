@@ -13,26 +13,26 @@
 		<c:forEach items="${produtos}" var="produto">
 			<li><a href="${s:mvcUrl('PC#detalhe').arg(0, produto.id).build()}" class="block clearfix">
 				<h2 class="product-title">${produto.titulo}</h2>
-				<c:if test="${produto.imageFile == '' }">
-					<c:if test="${produto.sumarioPath == null }">
-						<img width="143"
-							height="202"
-							src="https://cdn.shopify.com/s/files/1/0155/7645/products/java8-featured_large.png?v=1411490181"
-							alt="${produto.titulo}"
-							title="${produto.titulo}"/>
-					</c:if>
+<%-- 				<c:if test="${produto.imageFile == '' }"> --%>
+<%-- 					<c:if test="${produto.sumarioPath == null }"> --%>
+<!-- 						<img width="143" -->
+<!-- 							height="202" -->
+<!-- 							src="https://cdn.shopify.com/s/files/1/0155/7645/products/java8-featured_large.png?v=1411490181" -->
+<%-- 							alt="${produto.titulo}" --%>
+<%-- 							title="${produto.titulo}"/> --%>
+<%-- 					</c:if> --%>
 					<img width="143"
 						height="202"
 						src="${produto.sumarioPath}"
 						alt="${produto.titulo}"
 						title="${produto.titulo}"/>
-				</c:if>
-					<img width="143"
-						height="202"
-						src="data:image/jpg;base64,${produto.imageFile}"
-						alt="${produto.titulo}"
-						title="${produto.titulo}"/>
-					<small class="buy-button">Compre</small>
+<%-- 				</c:if> --%>
+<!-- 					<img width="143" -->
+<!-- 						height="202" -->
+<%-- 						src="data:image/jpg;base64,${produto.imageFile}" --%>
+<%-- 						alt="${produto.titulo}" --%>
+<%-- 						title="${produto.titulo}"/> --%>
+<%-- 					<small class="buy-button">Compre</small> --%>
 			</a></li>
 		</c:forEach>
 		<c:if test="${produtos.isEmpty()}">
