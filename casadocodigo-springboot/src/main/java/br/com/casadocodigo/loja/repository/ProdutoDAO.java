@@ -11,7 +11,7 @@ import br.com.casadocodigo.loja.models.Categoria;
 import br.com.casadocodigo.loja.models.Produto;
 import br.com.casadocodigo.loja.models.TipoPreco;
 
-public interface ProdutoDAO extends CrudRepository<Produto, Long>{
+public interface ProdutoDAO extends CrudRepository<Produto, Integer>{
 	
 	@Query("select q from Produto q  order by rand()")
 	List<Produto> limitedList(Pageable pageable);

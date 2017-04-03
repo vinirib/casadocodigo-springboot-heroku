@@ -34,14 +34,14 @@ public class CarrinhoComprasController {
 	
 	
 	@RequestMapping("/add")
-	public ModelAndView add(String produtoId, TipoPreco tipo){
+	public ModelAndView add(Integer produtoId, TipoPreco tipo){
 	    ModelAndView modelAndView = new ModelAndView("redirect:/");
-	    CarrinhoItem carrinhoItem = criaItem(Long.parseLong(produtoId), tipo);
+	    CarrinhoItem carrinhoItem = criaItem(produtoId, tipo);
 	    carrinhoCompras.add(carrinhoItem);
 	    return modelAndView;
 	}
 
-	private CarrinhoItem criaItem(Long produtoId, TipoPreco tipoPreco) {
+	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
 		Produto produto = produtoDao.findOne(produtoId).get();
 //		String imageFile = fileLoader.load(produto.getSumarioPath());
 //		produto.setImageFile(imageFile);

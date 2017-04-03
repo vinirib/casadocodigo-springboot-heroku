@@ -69,7 +69,7 @@ public class ProdutosController {
 	}
 
 	@RequestMapping("detalhe/{id}")
-	public ModelAndView detalhe(@PathVariable("id")Long id){
+	public ModelAndView detalhe(@PathVariable("id")Integer id){
 		ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
 		Produto produto = produtoDao.findOne(id).get();
 		modelAndView.addObject("produto", produto);
@@ -78,7 +78,7 @@ public class ProdutosController {
 	
 	@RequestMapping(value="remover",method = RequestMethod.POST)
 	@CacheEvict(value="produtosHome", allEntries=true)
-	public ModelAndView remover(Long id, RedirectAttributes redirectAttributes){
+	public ModelAndView remover(Integer id, RedirectAttributes redirectAttributes){
 		Produto produto = produtoDao.findOne(id).get();
 		produtoDao.delete(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto removido com sucesso!");
@@ -87,7 +87,7 @@ public class ProdutosController {
 	
 	@RequestMapping(value="editar",method = RequestMethod.POST)
 	@CacheEvict(value="produtosHome", allEntries=true)
-	public ModelAndView editar(Long id){
+	public ModelAndView editar(Integer id){
 		Produto produto = produtoDao.findOne(id).get();
 		ModelAndView view = new ModelAndView("produtos/form");
 		view.addObject("tipos", TipoPreco.values());

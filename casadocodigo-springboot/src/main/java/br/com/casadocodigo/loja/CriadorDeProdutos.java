@@ -29,11 +29,11 @@ import br.com.casadocodigo.loja.repository.UsuarioDAO;
 @Component
 public class CriadorDeProdutos {
 	
-	@PersistenceContext
-	private EntityManager em;
+//	@PersistenceContext
+//	private EntityManager em;
 	
-	@Autowired
-	private JpaTransactionManager transactionManager;
+//	@Autowired
+//	private JpaTransactionManager transactionManager;
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -46,11 +46,11 @@ public class CriadorDeProdutos {
 	
 	@PostConstruct
 	public void init() {
-		TransactionTemplate template = new TransactionTemplate(transactionManager);
-		template.setTransactionManager(transactionManager);
-		template.execute(new TransactionCallbackWithoutResult() {
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus status) {
+//		TransactionTemplate template = new TransactionTemplate(transactionManager);
+//		template.setTransactionManager(transactionManager);
+//		template.execute(new TransactionCallbackWithoutResult() {
+//			@Override
+//			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				verifyRoles();
 				verifyUsers();
 				verifyProdutos();
@@ -78,7 +78,8 @@ public class CriadorDeProdutos {
 					role.setNome("ROLE_ADMIN");
 					
 					adminUser.setRoles(Arrays.asList(role));
-					em.persist(adminUser);
+//					em.persist(adminUser);
+					usuarioDAO.save(adminUser);
 				}
 			}
 
@@ -88,7 +89,8 @@ public class CriadorDeProdutos {
 				} catch (Exception e) {
 					Role roleAdmin = new Role();
 					roleAdmin.setNome("ROLE_ADMIN");
-					em.persist(roleAdmin);
+//					em.persist(roleAdmin);
+					roleDAO.save(roleAdmin);
 				}
 				
 				try {
@@ -96,7 +98,8 @@ public class CriadorDeProdutos {
 				} catch (Exception e) {
 					Role roleClient = new Role();
 					roleClient.setNome("ROLE_CLIENT");
-					em.persist(roleClient);
+//					em.persist(roleClient);
+					roleDAO.save(roleClient);
 				}
 				
 				
@@ -120,7 +123,7 @@ public class CriadorDeProdutos {
 				algoritmosEmJava.setPaginas(440);
 				algoritmosEmJava.setCategorias(Arrays.asList(Categoria.JAVA));
 				
-				em.persist(algoritmosEmJava);
+//				em.persist(algoritmosEmJava);
 				
 				Produto jpaEficaz = new Produto();
 				jpaEficaz.setTitulo("JPA Eficaz");
@@ -136,7 +139,6 @@ public class CriadorDeProdutos {
 				jpaEficaz.setPaginas(167);
 				jpaEficaz.setCategorias(Arrays.asList(Categoria.JAVA));
 				
-				em.persist(jpaEficaz);
 				
 				Produto jquery = new Produto();
 				jquery.setTitulo("Dominando JavaScript com jQuery");
@@ -150,7 +152,7 @@ public class CriadorDeProdutos {
 				jquery.setPaginas(193);
 				jquery.setCategorias(Arrays.asList(Categoria.FRONT_END));
 				
-				em.persist(jquery);
+//				em.persist(jquery);
 				
 				Produto css = new Produto();
 				css.setTitulo("CSS Eficiente");
@@ -165,7 +167,7 @@ public class CriadorDeProdutos {
 				css.setPaginas(131);
 				css.setCategorias(Arrays.asList(Categoria.FRONT_END));
 				
-				em.persist(css);
+//				em.persist(css);
 				
 				Produto spring = new Produto();
 				spring.setTitulo("Vire o jogo com Spring Framework ");
@@ -179,7 +181,7 @@ public class CriadorDeProdutos {
 				spring.setPaginas(296);
 				spring.setCategorias(Arrays.asList(Categoria.JAVA));
 				
-				em.persist(spring);
+//				em.persist(spring);
 
 				Produto linux = new Produto();
 				linux.setTitulo("Começando com o Linux");
@@ -197,7 +199,7 @@ public class CriadorDeProdutos {
 				linux.setPaginas(150);
 				linux.setCategorias(Arrays.asList(Categoria.OUTROS));
 				
-				em.persist(linux);
+//				em.persist(linux);
 				
 				Produto agile = new Produto();
 				agile.setTitulo("Agile");
@@ -214,7 +216,7 @@ public class CriadorDeProdutos {
 				agile.setPaginas(150);
 				agile.setCategorias(Arrays.asList(Categoria.AGILE));
 				
-				em.persist(agile);
+//				em.persist(agile);
 				
 				Produto node = new Produto();
 				node.setTitulo("Node.js");
@@ -231,7 +233,7 @@ public class CriadorDeProdutos {
 				node.setPaginas(161);
 				node.setCategorias(Arrays.asList(Categoria.FRONT_END,Categoria.WEB,Categoria.OUTROS));
 				
-				em.persist(node);
+//				em.persist(node);
 				
 				Produto androidJogos = new Produto();
 				androidJogos.setTitulo("Desenvolvimento de Jogos para Android");
@@ -248,7 +250,7 @@ public class CriadorDeProdutos {
 				androidJogos.setPaginas(189);
 				androidJogos.setCategorias(Arrays.asList(Categoria.GAMES,Categoria.OUTROS));
 				
-				em.persist(androidJogos);
+//				em.persist(androidJogos);
 				
 				Produto startup = new Produto();
 				startup.setTitulo("Guia da Startup");
@@ -262,7 +264,8 @@ public class CriadorDeProdutos {
 				startup.setPaginas(388);
 				startup.setCategorias(Arrays.asList(Categoria.AGILE,Categoria.OUTROS));
 				
-				em.persist(startup);
+//				em.persist(startup);
+				produtoDAO.save(Arrays.asList(algoritmosEmJava, jpaEficaz, jquery, css, spring, linux, agile, node, androidJogos, startup));
 			}
 			
 
@@ -281,7 +284,7 @@ public class CriadorDeProdutos {
 				
 				produto.setPrecos(Arrays.asList(precoEbook, precoImpresso, precoCombo));
 			}
-		});		
+//		});		
 	}
 	
-}
+//}

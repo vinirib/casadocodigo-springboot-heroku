@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import br.com.casadocodigo.loja.models.Role;
 
-public interface RoleDAO extends CrudRepository<Role, Long>{ 
+public interface RoleDAO extends CrudRepository<Role, Integer>{ 
 
 	@Query("select r from Role r where r.nome = :roleName")
 	Role findByName(String roleName);
