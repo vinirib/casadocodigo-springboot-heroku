@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	</head>
+	<body th:fragment="bodyHeader">
+		<header id="layout-header">
+			<div class="clearfix container">
+				<a href="/" id="logo"> </a>
+				<div id="header-content">
+					<nav id="main-nav">
+						<ul class="clearfix">
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+								<li><a href="/casadocodigo/logout" rel="nofollow">Logout</a></li>
+								<li><a href="@{/produtos/listar}"
+									rel="nofollow">Listagem de Produtos</a></li>
+								<li><a href="@{/produtos/form}" rel="nofollow">Cadastro
+										de Produtos</a></li>
+							</div>
+							<div sec:authorize="!isAuthenticated()">
+								<li>
+									<a th:href="@{/login}" rel="nofollow">Login</a>
+								</li>
+							</div>
+							<li>
+								<a th:href="@{/carrinho/itens}" rel="nofollow">
+									<span th:text = "#{menu.carrinho}">
+										<span th:text = "#{carrinhoCompras.quantidade}"></span>
+									</span>
+     							</a>
+     						</li>
+     						 <li>
+					            <a href="?locale=pt" rel="nofollow">
+					            	<span th:text = "#{menu.pt}"></span>
+					            </a>
+					        </li>
+					        <li>
+					            <a href="?locale=en_US" rel="nofollow">
+					            	<span th:text = "#{menu.en}"></span>
+					            </a>
+					        </li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<nav class="categories-nav">
+			<ul class="container">
+				<li class="category">
+					<a href="/casadocodigo">
+						<span th:text = "#{navegacao.categoria.home}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/AGILE}">
+						<span th:text = "#{navegacao.categoria.agile}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/FRONT_END}">
+						<span th:text = "#{navegacao.categoria.front_end}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/GAMES}">
+						<span th:text = "#{navegacao.categoria.games}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/JAVA}">
+						<span th:text = "#{navegacao.categoria.java}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/MOBILE}">
+						<span th:text = "#{navegacao.categoria.mobile}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/WEB}"> 
+						<span th:text = "#{navegacao.categoria.web}"></span>
+					</a>
+				</li>
+				<li class="category">
+					<a href="@{/collection/OUTROS}"> 
+						<span th:text = "#{navegacao.categoria.outros}"></span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</body>
+</html>

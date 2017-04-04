@@ -13,9 +13,7 @@ import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.google.common.cache.CacheBuilder;
 
@@ -27,15 +25,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
-	
-	@Bean
-	public InternalResourceViewResolver internalResourceViewResolver(){
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix(".jsp");
-		resolver.setExposedContextBeanNames("carrinhoCompras");
-		return resolver;
-	}
 
 	@Bean
 	public FormattingConversionService mvConversionService(){
@@ -46,14 +35,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		return conversionService;
 	}
 	
-	
-	/**
-	 * CSS and Javascript configuration
-	 */
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
 	
 	@Bean
 	public MessageSource messageSource(){
