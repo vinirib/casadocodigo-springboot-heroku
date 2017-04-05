@@ -11,19 +11,16 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@DynamicUpdate
-@DynamicInsert
 public class Produto {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,7 +34,7 @@ public class Produto {
 	@Transient
 	private String imageFile;
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Preco> precos = new ArrayList<>();
 
 	@DateTimeFormat(pattern="dd/MM/yyyy")

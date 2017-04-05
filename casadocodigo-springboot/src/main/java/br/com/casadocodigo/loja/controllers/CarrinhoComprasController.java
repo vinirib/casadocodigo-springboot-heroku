@@ -48,7 +48,7 @@ public class CarrinhoComprasController {
 		return new CarrinhoItem(produto, tipoPreco);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="itens", method=RequestMethod.GET)
 	public ModelAndView itens(){
 		List<Produto> produtos = produtoDao.limitedList(new PageRequest(0,5));
 		ModelAndView view = new ModelAndView("carrinho/itens");

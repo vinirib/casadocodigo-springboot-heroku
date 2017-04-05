@@ -23,8 +23,8 @@
 							</div>
 							<li>
 								<a th:href="@{/carrinho/itens}" rel="nofollow">
-									<span th:text = "#{menu.carrinho}">
-										<span th:text = "#{carrinhoCompras.quantidade}"></span>
+									<span th:text = "#{menu.carrinho(${@carrinhoCompras.getQuantidade()})}">
+<!-- 										<span th:text = "${carrinhoCompras.quantidade}"></span> -->
 									</span>
      							</a>
      						</li>
@@ -46,42 +46,42 @@
 		<nav class="categories-nav">
 			<ul class="container">
 				<li class="category">
-					<a href="/casadocodigo">
+					<a href="/">
 						<span th:text = "#{navegacao.categoria.home}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/AGILE}">
+					<a th:href="@{/collection/AGILE}">
 						<span th:text = "#{navegacao.categoria.agile}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/FRONT_END}">
+					<a th:href="@{/collection/FRONT_END}">
 						<span th:text = "#{navegacao.categoria.front_end}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/GAMES}">
+					<a th:href="@{/collection/GAMES}">
 						<span th:text = "#{navegacao.categoria.games}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/JAVA}">
+					<a th:href="@{/collection/JAVA}">
 						<span th:text = "#{navegacao.categoria.java}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/MOBILE}">
+					<a th:href="@{/collection/MOBILE}">
 						<span th:text = "#{navegacao.categoria.mobile}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/WEB}"> 
+					<a th:href="@{/collection/WEB}"> 
 						<span th:text = "#{navegacao.categoria.web}"></span>
 					</a>
 				</li>
 				<li class="category">
-					<a href="@{/collection/OUTROS}"> 
+					<a th:href="@{/collection/OUTROS}"> 
 						<span th:text = "#{navegacao.categoria.outros}"></span>
 					</a>
 				</li>

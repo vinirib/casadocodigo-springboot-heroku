@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import br.com.casadocodigo.loja.models.Categoria;
 import br.com.casadocodigo.loja.models.Produto;
@@ -17,9 +18,9 @@ public interface ProdutoDAO extends CrudRepository<Produto, Integer>{
 	List<Produto> limitedList(Pageable pageable);
 
 	@Query("select p from Produto p join fetch p.categorias categorias where categorias = :categoria")
-	List<Produto> listByCategory(Categoria Categoria);
+	List<Produto> listByCategory(@Param("categoria")Categoria Categoria);
 	
 	@Query("select sum(preco.valor) from Produto p inner join p.precos preco where preco.preco = :tipoPreco")
-	BigDecimal sumPricesByType(TipoPreco tipoPreco);
+	BigDecimal sumPricesByType(@Param("tipoPreco")TipoPreco tipoPreco);
 	
 }

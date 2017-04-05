@@ -11,7 +11,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @SpringBootApplication
 @ComponentScan({"br.com.casadocodigo.loja*"})
-public class CasadocodigoSpringbootApplication {
+public class CasadocodigoSpringbootApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CasadocodigoSpringbootApplication.class, args);
@@ -20,10 +20,10 @@ public class CasadocodigoSpringbootApplication {
 	 @Bean
 	  public ViewResolver viewResolver() {
 	    ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-	    templateResolver.setTemplateMode("XHTML");
+	    templateResolver.setTemplateMode("HTML");
 	    SpringTemplateEngine engine = new SpringTemplateEngine();
 	    engine.setTemplateResolver(templateResolver);
-
+	
 	    ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 	    viewResolver.setTemplateEngine(engine);
 	    return viewResolver;

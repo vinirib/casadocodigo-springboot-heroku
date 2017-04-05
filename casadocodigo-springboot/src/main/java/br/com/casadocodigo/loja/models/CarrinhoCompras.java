@@ -6,21 +6,26 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
+@SessionScope
 public class CarrinhoCompras  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private transient Map<CarrinhoItem, Integer> itens = new LinkedHashMap<CarrinhoItem, Integer>();
+	private transient Map<CarrinhoItem, Integer> itens;
+	
+	private int quantidade;
+	
+	public CarrinhoCompras() {
+		this.itens = new LinkedHashMap<CarrinhoItem, Integer>();
+	}
 	
 	public void add(CarrinhoItem item){
 		itens.put(item, getQuantidade(item) + 1);
+		this.quantidade ++;
 	}
 
 	public int getQuantidade(CarrinhoItem item) {
@@ -31,7 +36,8 @@ public class CarrinhoCompras  implements Serializable{
 	}
 	
 	public int getQuantidade(){
-	   return itens.values().stream().reduce(0, (proximo, acumulador) -> (proximo + acumulador));
+		return this.quantidade;
+//	   return itens.values().stream().reduce(0, (proximo, acumulador) -> (proximo + acumulador));
 	}
 	
 	public Collection<CarrinhoItem> getItens() {

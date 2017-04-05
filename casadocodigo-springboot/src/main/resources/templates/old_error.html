@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headTag :: headTag">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Casa do Código</title>
+</head>
+<body>
+	<div th:include="fragments/bodyHeader" th:remove="tag" />
+	<section id="index-section" class="container middle">
+		<br>
+		<br>
+		<br>
+		<h2>Erro genérico acontecedo!!!</h2>
+	</section>
+
+        Mensagem: <span th:text"${exception.message}"/>
+        	<span th:each="${stk :exception.stackTrace }">
+        		<span th:text="${stk}"
+        	</span>
+</body>
+</html>
