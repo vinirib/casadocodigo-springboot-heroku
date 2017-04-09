@@ -7,15 +7,15 @@
 <body>
 	<div th:include="fragments/bodyHeader" th:remove="tag" />
 	<section id="index-section" class="container middle">
-		<br>
-		<br>
-		<br>
+		<br/>
+		<br/>
+		<br/>
 		<h2>Erro genérico acontecedo!!!</h2>
 	</section>
 
-        Mensagem: <span th:text"${exception.message}"/>
-        	<span th:each="${stk :exception.stackTrace }">
-        		<span th:text="${stk}"
-        	</span>
+        Mensagem: <span th:text="${error}"></span>
+<!--      		<span th:each="${stk :exception.stackTrace }"> -->
+<!--         		<span th:text="${stk}"></span> -->
+<!--         	</span> -->
 </body>
 </html>

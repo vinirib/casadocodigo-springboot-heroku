@@ -1,9 +1,12 @@
 package br.com.casadocodigo.loja.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -14,7 +17,7 @@ import br.com.casadocodigo.loja.repository.RoleRepository;
 import br.com.casadocodigo.loja.service.UserService;
 
 @Controller
-public class LoginController {
+public class LoginController  {
 
 	@Autowired
 	private UserService userService;
@@ -22,25 +25,28 @@ public class LoginController {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-    @RequestMapping(value="/login", method=RequestMethod.GET)
+	@GetMapping("/login")
     public String login(){
         return "login";
     }
     
-    @RequestMapping(value="/logout", method=RequestMethod.GET)
+    @GetMapping("/logout")
     public ModelAndView logout(){
     	return new ModelAndView("redirect:/produtos");
     }
     
-    @RequestMapping(value="/login/criar", method=RequestMethod.GET)
-    public String criar(User usuario){
+    @GetMapping("/login/criar")
+    public String criar(User user){
     	return "formLogin";
     }
     
-    @RequestMapping(value="/login/gravar",method=RequestMethod.POST)
-    public String gravar(User usuario, String role, RedirectAttributes redirectAttributes){
-    	usuario.setRoles(Sets.newHashSet(roleRepository.findByName(role)));
-    	userService.save(usuario);
+    @PostMapping("/login/gravar")
+    public String gravar(@Valid User user, BindingResult bindingResult, String role, RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()) {
+            return "formLogin";
+        }
+        user.setRoles(Sets.newHashSet(roleRepository.findByName(role)));
+    	userService.save(user);
     	redirectAttributes.addFlashAttribute("sucesso", "Usuario cadastrado com sucesso!");
     	return "redirect:/login";
     }

@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
+		<script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+		<title>Casa do Código - Criar usuário</title>
 		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 		<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
-		<title>Casa do Código - Criar usuário</title>
+		<style type="text/css">
+		
+			.error {
+				color: red;
+			}
+		
+		</style>
 	</head>
 	<body>
 	<div class="container">
 		<h1>Cadastro de Usuário</h1>
-		<form th:action="@{/login/gravar}" method="post" >
+		<form action="#" th:action="@{/login/gravar}" method="post" th:object="${user}" id="registrationlogin">
 			<div class="form-group">
 				<label>Nome</label> 
-				<input type="text" name="username" class="form-control"/>
+				<input type="text" th:field="*{name}" class="form-control" id="name"/>
+				<label class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</label>
 			</div>
 			<div class="form-group">
-				<label>Email</label> 
-				<input type="text" name="email" class="form-control"/>
+				<label>Login</label> 
+				<input type="text" th:field="*{username}" class="form-control" placeholder="Digite seu email" id="username"/>
+				<label class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</label>
 			</div>
 			<div class="form-group">
 				<label>Senha</label> 
-				<input type="password" name="password" class="form-control"/>
+				<input type="password" th:field="*{password}" class="form-control" id="password"/>
+				<label class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</label>
 			</div>
 			<div class="form-group">
 				<label>Confirmar Senha</label>
-				<input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"/> 
+				<input type="password" th:field="*{passwordConfirm}" id="passwordConfirm" class="form-control"/> 
 			</div>
 			<div class="form-group">
 				<label>Tipo de Usuário</label>
@@ -38,29 +51,66 @@
 	</div>
 </body>
 <script type="text/javascript">
-	document.getElementById("salvar").addEventListener('click', function(evt){
-		var senha = document.getElementById("password").value.trim();
-		var confirmarSenha = document.getElementById("passwordConfirm").value.trim();
+
+//Wait for the DOM to be ready
+$(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("#registrationlogin").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      name: "required"
+      username: {
+          required: true,
+          // Specify that email should be validated
+          // by the built-in "email" rule
+          email: true
+        },
+      lastname: "required",
+      password: {
+        required: true,
+        minlength: 5
+      },
+      passwordConfirm: "required"
+    },
+    // Specify validation error messages
+    messages: {
+      name: "Digite seu nome",
+      username: "Digite seu email de usuário",
+      password: {
+        required: "Digite sua Senha",
+        minlength: "Sua senha deve ter no mínimo 5 caracteres"
+      },
+      email: "Digite um email válido"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+// 	document.getElementById("salvar").addEventListener('click', function(evt){
+// 		var senha = document.getElementById("password").value.trim();
+// 		var confirmarSenha = document.getElementById("passwordConfirm").value.trim();
 		
-		if($('#roleUser').find(":selected").text() ==  'Selecione'){
-			alert('Selecione um tipo de Usuário');
-			evt.preventDefault();
-			return;
-		}	
+// 		if($('#roleUser').find(":selected").text() ==  'Selecione'){
+// 			alert('Selecione um tipo de Usuário');
+// 			evt.preventDefault();
+// 			return;
+// 		}	
 		
-		if(senha == ''){
-			alert('Senha não pode estar vazio');
-			evt.preventDefault();
-			return;
-		}
-		
-		if (senha != confirmarSenha){
-			alert('Senhas digitadas incompatíveis');
-			senha.value =="";
-			confirmarSenha.value =="";
-			evt.preventDefault();
-		}	
-	})
+// 		if (senha != confirmarSenha){
+// 			alert('Senhas digitadas incompatíveis');
+// 			senha.value =="";
+// 			confirmarSenha.value =="";
+// 			evt.preventDefault();
+// 		}	
+// 	})
 
 </script>
 </html>

@@ -87,6 +87,7 @@
 			<version>3.2.2</version>
 		</dependency>
 
+
 		<!-- Guava google cache dependency -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -98,6 +99,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j</artifactId>
 			<version>1.2.5.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.unbescape</groupId>
+			<artifactId>unbescape</artifactId>
+			<version>1.0</version>
 		</dependency>
 
 		<dependency>

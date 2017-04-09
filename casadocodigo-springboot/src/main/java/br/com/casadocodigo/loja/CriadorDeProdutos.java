@@ -59,6 +59,7 @@ public class CriadorDeProdutos {
 			 * Creating admin user;
 			 */
 			User adminUser = new User();
+			adminUser.setName("Administrador");
 			adminUser.setUsername("admin@casadocodigo.com.br");
 			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
