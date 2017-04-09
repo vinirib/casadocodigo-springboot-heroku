@@ -42,7 +42,7 @@ public class CarrinhoComprasController {
 	}
 
 	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
-		Produto produto = produtoDao.findOne(produtoId).get();
+		Produto produto = produtoDao.findOne(produtoId);
 //		String imageFile = fileLoader.load(produto.getSumarioPath());
 //		produto.setImageFile(imageFile);
 		return new CarrinhoItem(produto, tipoPreco);

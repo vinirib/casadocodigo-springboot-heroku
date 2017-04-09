@@ -3,8 +3,6 @@ package br.com.casadocodigo.loja.controllers;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.loja.models.CarrinhoCompras;
 import br.com.casadocodigo.loja.models.Pagamento;
-import br.com.casadocodigo.loja.models.Usuario;
+import br.com.casadocodigo.loja.models.User;
 
 @RequestMapping("/pagamento")
 @Controller
@@ -33,7 +31,7 @@ public class PagamentoController {
 	private static final String urlPagamento = "http://book-payment.herokuapp.com/payment"; 
 	
     @RequestMapping(value="/finalizar", method=RequestMethod.POST)
-    public Callable<ModelAndView> finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model){
+    public Callable<ModelAndView> finalizar(@AuthenticationPrincipal User usuario, RedirectAttributes model){
     	return () -> {
     		
 	    	try {

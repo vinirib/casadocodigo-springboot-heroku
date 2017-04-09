@@ -5,7 +5,7 @@
 		<title>Casa do Código</title>
 	</head>
 	<body>
-		<div th:include="fragments/bodyHeader" th:remove="tag"/>
+		<div th:include="fragments/bodyHeader" th:remove="tag"></div>
 		<section class="container middle">
 			  <h2 id="cart-title">Seu carrinho de compras</h2>
 			    <table id="cart-table">
@@ -31,18 +31,18 @@
 					        <td class="cart-img-col" style="padding-left:20px">
 					        	<img width="71px" height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}" />
 					        </td>
-					        <td class="item-title"><span th:text="${item.produto.titulo}"/></td>
-					        <td class="numeric-cell"><span th:text="${item.tipoPreco}"/></td>
+					        <td class="item-title"><span th:text="${item.produto.titulo}"></span></td>
+					        <td class="numeric-cell"><span th:text="${item.tipoPreco}"></span></td>
 					        <td class="quantity-input-cell">
 					            <input type="number" min="0" readonly="readonly" id="quantidade" name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
 					        </td>
-					        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal(item)}"/></td>
+					        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal(item)}"></span></td>
 							<td class="remove-item">
 							    <form th:action="@{/carrinho/remover}" method="post">
-							        <input type="hidden" name="produtoId" th:value="${item.produto.id}">
-							        <input type="hidden" name="tipoPreco" th:value="${item.tipoPreco}">
+							        <input type="hidden" name="produtoId" th:value="${item.produto.id}"/>
+							        <input type="hidden" name="tipoPreco" th:value="${item.tipoPreco}"/>
 							        <input type="image" src="/excluir.png" alt="Excluir" title="Excluir" />
-							    </form:form>
+							    </form>
 							</td>			    
 						</tr>
 			      </tbody>
@@ -51,10 +51,10 @@
 					        <td colspan="3">
 							<form th:action="@{/pagamento/finalizar}" method="post">
 					            <input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
-	    					  </form:form>
+	    					  </form>
 					        </td>
 					        <td></td>
-					        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"/></td>
+					        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"></span></td>
 					        <td></td>
 					    </tr>
 					</tfoot>

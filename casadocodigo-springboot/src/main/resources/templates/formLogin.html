@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+		<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
+		<title>Casa do Código - Criar usuário</title>
+	</head>
+	<body>
+	<div class="container">
+		<h1>Cadastro de Usuário</h1>
+		<form th:action="@{/login/gravar}" method="post" >
+			<div class="form-group">
+				<label>Nome</label> 
+				<input type="text" name="username" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>Email</label> 
+				<input type="text" name="email" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>Senha</label> 
+				<input type="password" name="password" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>Confirmar Senha</label>
+				<input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"/> 
+			</div>
+			<div class="form-group">
+				<label>Tipo de Usuário</label>
+				<select name="role" class="form-control" id="roleUser">
+					<option value="0" label="Select">Selecione</option>
+					<option value="ROLE_ADMIN" label="ADMIN">Admin</option>
+					<option value="ROLE_CLIENT" label="CLIENT">Cliente</option>
+				</select>
+			</div>
+			<button type="submit" id="salvar" >Salvar</button>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	document.getElementById("salvar").addEventListener('click', function(evt){
+		var senha = document.getElementById("password").value.trim();
+		var confirmarSenha = document.getElementById("passwordConfirm").value.trim();
+		
+		if($('#roleUser').find(":selected").text() ==  'Selecione'){
+			alert('Selecione um tipo de Usuário');
+			evt.preventDefault();
+			return;
+		}	
+		
+		if(senha == ''){
+			alert('Senha não pode estar vazio');
+			evt.preventDefault();
+			return;
+		}
+		
+		if (senha != confirmarSenha){
+			alert('Senhas digitadas incompatíveis');
+			senha.value =="";
+			confirmarSenha.value =="";
+			evt.preventDefault();
+		}	
+	})
+
+</script>
+</html>

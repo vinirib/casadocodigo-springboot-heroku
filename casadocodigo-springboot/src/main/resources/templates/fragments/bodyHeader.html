@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
 	</head>
 	<body th:fragment="bodyHeader">
@@ -9,18 +9,14 @@
 				<div id="header-content">
 					<nav id="main-nav">
 						<ul class="clearfix">
-							<div sec:authorize="hasRole('ROLE_ADMIN')">
-								<li><a href="/casadocodigo/logout" rel="nofollow">Logout</a></li>
-								<li><a href="@{/produtos/listar}"
-									rel="nofollow">Listagem de Produtos</a></li>
-								<li><a href="@{/produtos/form}" rel="nofollow">Cadastro
-										de Produtos</a></li>
-							</div>
-							<div sec:authorize="!isAuthenticated()">
-								<li>
-									<a th:href="@{/login}" rel="nofollow">Login</a>
-								</li>
-							</div>
+							<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/logout" rel="nofollow">Logout</a></li>
+							<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/produtos/listar}"
+								rel="nofollow">Listagem de Produtos</a></li>
+							<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/produtos/form}" rel="nofollow">Cadastro
+									de Produtos</a></li>
+							<li sec:authorize="!isAuthenticated()">
+								<a th:href="@{/login}" rel="nofollow">Login</a>
+							</li>
 							<li>
 								<a th:href="@{/carrinho/itens}" rel="nofollow">
 									<span th:text = "#{menu.carrinho(${@carrinhoCompras.getQuantidade()})}">

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/headTag :: headTag">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais - Casa do Código</title>
+		<style type="text/css">
+			.categorias {
+				font-size: 12px !important; 
+				text-transform: capitalize !important;
+			}
+
+		</style>
+	</head>
+<body>
+	<div th:include="fragments/bodyHeaderAdmin" th:remove="tag"></div>
+	<div class="container">
+		<h1>Cadastro de Produto</h1>
+		<form th:action="@{/produtos/gravar}" method="post">
+			<input type="hidden" name="id" th:value="${produto.id}"/>
+			<div class="form-group">
+				<label>Título</label> 
+				<input type="text" name="titulo" class="form-control" th:value="${produto.titulo}"/>
+			</div>
+			<div class="form-group">
+				<label>Descrição</label>
+				<textarea name="descricao" rows="10" cols="20" class="form-control" th:text="${produto.descricao}" ></textarea>
+			</div>
+			<div class="form-group">
+				<label>Data lançamento</label> 
+				<input type="date" name="dataLancamento" th:value="${produto.dataLancamento}"/>
+			</div>
+			<div class="form-group">
+				<label>Páginas</label> 
+				<input type="text" name="paginas"  th:value="${produto.paginas}"/>
+			</div>
+			<h3>Preços</h3>
+				<div th:each="tipoPreco,status : ${tipos}" class="form-group">
+					<label><span th:text="${tipoPreco}"></span></label>
+					<input name="precos[${status.index}].valor" class="form-control"/>
+					<input type="hidden" name="precos[${status.index}].preco" th:value="${tipoPreco}"/>
+					</div>
+			<div class="form-group">
+				<label>Categoria</label><br/>
+				<span th:each="categoria : ${categorias}">
+					<span th:text="${categoria}"></span> 
+					<input type="checkbox" name="usuario.categorias[0]" th:value="${categoria}" class="form-control categorias"/>
+				</span>
+			</div>
+			<div class="form-group">
+				<label>URL sumário</label>
+				<input type="text" name="sumarioPath"  class="form-control" th:value="${produto.sumarioPath}"/>
+			</div>
+			<button type="submit">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

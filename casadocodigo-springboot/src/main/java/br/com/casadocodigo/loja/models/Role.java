@@ -1,31 +1,39 @@
 package br.com.casadocodigo.loja.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role implements GrantedAuthority{
+public class Role {
+    private Long id;
+    private String name;
+    private Set<User> users;
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-    private String nome;
-	
-	public String getNome() {
-		return nome;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getId() {
+        return id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@Override
-	public String getAuthority() {
-		return this.nome;
-	}
-    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @ManyToMany(mappedBy = "roles")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }

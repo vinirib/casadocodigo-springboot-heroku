@@ -5,8 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorAttributes;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class AppErrorController implements ErrorController{
      * Controller for the Error Controller
      * @param errorAttributes
      */
+    @Autowired
     public AppErrorController(ErrorAttributes errorAttributes) {
         this.errorAttributes = errorAttributes;
     }

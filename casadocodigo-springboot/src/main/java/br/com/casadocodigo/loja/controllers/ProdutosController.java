@@ -39,7 +39,7 @@ public class ProdutosController {
 		binder.addValidators(new ProdutoValidation());
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="listar", method = RequestMethod.GET)
 	public ModelAndView listar() throws UnsupportedEncodingException {
 		Iterable<Produto> listaDeProdutos = produtoDao.findAll();
 		ModelAndView modelAndView = new ModelAndView("produtos/lista");
@@ -71,7 +71,7 @@ public class ProdutosController {
 	@RequestMapping("detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id")Integer id){
 		ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
-		Produto produto = produtoDao.findOne(id).get();
+		Produto produto = produtoDao.findOne(id);
 		modelAndView.addObject("produto", produto);
 		return modelAndView;
 	}
@@ -79,7 +79,7 @@ public class ProdutosController {
 	@RequestMapping(value="remover",method = RequestMethod.POST)
 	@CacheEvict(value="produtosHome", allEntries=true)
 	public ModelAndView remover(Integer id, RedirectAttributes redirectAttributes){
-		Produto produto = produtoDao.findOne(id).get();
+		Produto produto = produtoDao.findOne(id);
 		produtoDao.delete(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto removido com sucesso!");
 		return new ModelAndView("redirect:/produtos");
@@ -88,7 +88,7 @@ public class ProdutosController {
 	@RequestMapping(value="editar",method = RequestMethod.POST)
 	@CacheEvict(value="produtosHome", allEntries=true)
 	public ModelAndView editar(Integer id){
-		Produto produto = produtoDao.findOne(id).get();
+		Produto produto = produtoDao.findOne(id);
 		ModelAndView view = new ModelAndView("produtos/form");
 		view.addObject("tipos", TipoPreco.values());
 		view.addObject("categorias", Categoria.values());

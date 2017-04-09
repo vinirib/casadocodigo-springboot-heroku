@@ -10,7 +10,7 @@
 			<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
 			<ul class="clearfix book-collection">
 				<li th:each="produto : ${produtos}">
-					<a th:href="@{/produtos/detalhe/{id}(id=${produto.id})}" class="block clearfix">
+					<a th:href="@{/produtos/detalhe/} + ${produto.id}" class="block clearfix">
 						<h2 class="product-title"><span th:text="${produto.titulo}"/></h2>
 						<img th:attr="src=@{${produto.sumarioPath}},alt=${produto.titulo},title=${produto.titulo}" />
 					</a>
