@@ -21,9 +21,9 @@ public class ProdutoValidation implements Validator {
         if(produto.getPaginas() <= 0){
             errors.rejectValue("paginas", "field.required");
         }
-        if (produto.getPrecos().get(0).getValor() == null 
-        	||produto.getPrecos().get(1).getValor() == null
-        	||produto.getPrecos().get(2).getValor() == null) {
+        if (produto.getTipoPrecos().get(0).getValor() == null 
+        	||produto.getTipoPrecos().get(1).getValor() == null
+        	||produto.getTipoPrecos().get(2).getValor() == null) {
         	
 			errors.rejectValue("precos", "field.required");
 		}

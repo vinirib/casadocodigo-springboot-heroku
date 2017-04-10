@@ -266,6 +266,6 @@ public class CriadorDeProdutos {
 		precoCombo.setPreco(TipoPreco.COMBO);
 		precoCombo.setValor(new BigDecimal(70));
 
-		produto.setPrecos(Arrays.asList(precoEbook, precoImpresso, precoCombo));
+		produto.setTipoPrecos(Arrays.asList(precoEbook, precoImpresso, precoCombo));
 	}
 }

@@ -20,7 +20,7 @@ public interface ProdutoDAO extends CrudRepository<Produto, Integer>{
 	@Query("select p from Produto p join fetch p.categorias categorias where categorias = :categoria")
 	List<Produto> listByCategory(@Param("categoria")Categoria Categoria);
 	
-	@Query("select sum(preco.valor) from Produto p inner join p.precos preco where preco.preco = :tipoPreco")
+	@Query("select sum(preco.valor) from Produto p inner join p.tipoPrecos preco where preco.preco = :tipoPreco")
 	BigDecimal sumPricesByType(@Param("tipoPreco")TipoPreco tipoPreco);
 	
 }

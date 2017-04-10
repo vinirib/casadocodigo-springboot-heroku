@@ -8,21 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.casadocodigo.loja.infra.FileSaver;
 import br.com.casadocodigo.loja.models.Categoria;
 import br.com.casadocodigo.loja.models.Produto;
 import br.com.casadocodigo.loja.models.TipoPreco;
 import br.com.casadocodigo.loja.repository.ProdutoDAO;
-import br.com.casadocodigo.loja.validation.ProdutoValidation;
 
 @Controller
 @RequestMapping("/produtos")
@@ -30,16 +26,8 @@ public class ProdutosController {
 
 	@Autowired
 	private ProdutoDAO produtoDao;
-	
-	@Autowired
-	private FileSaver fileSaver;
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(new ProdutoValidation());
-	}
-	
-	@RequestMapping(value="listar", method = RequestMethod.GET)
+	@GetMapping("/listar")
 	public ModelAndView listar() throws UnsupportedEncodingException {
 		Iterable<Produto> listaDeProdutos = produtoDao.findAll();
 		ModelAndView modelAndView = new ModelAndView("produtos/lista");
@@ -47,28 +35,27 @@ public class ProdutosController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/form")
+	@GetMapping("/form")
 	public ModelAndView form(Produto produto) {
 		ModelAndView modelAndView = new ModelAndView("produtos/form");
-		modelAndView.addObject("tipos", TipoPreco.values());
+		modelAndView.addObject("tipo", TipoPreco.values());
 		modelAndView.addObject("categorias", Categoria.values());
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping("/gravar")
 	@CacheEvict(value="produtosHome", allEntries=true)
-	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
+	public String gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
-			 return form(produto);
+			 return "produtos/form";
 		}
-		String filePath = fileSaver.gravar("casadocodigo-imgs", sumario);
-		produto.setSumarioPath(filePath);
+//		String filePath = fileSaver.gravar("casadocodigo-imgs", sumario);
 		produtoDao.save(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
-		return new ModelAndView("redirect:/produtos");
+		return "redirect:/produtos";
 	}
 
-	@RequestMapping("detalhe/{id}")
+	@GetMapping("/detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id")Integer id){
 		ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
 		Produto produto = produtoDao.findOne(id);
@@ -76,7 +63,7 @@ public class ProdutosController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="remover",method = RequestMethod.POST)
+	@PostMapping("/remover")
 	@CacheEvict(value="produtosHome", allEntries=true)
 	public ModelAndView remover(Integer id, RedirectAttributes redirectAttributes){
 		Produto produto = produtoDao.findOne(id);
@@ -85,7 +72,7 @@ public class ProdutosController {
 		return new ModelAndView("redirect:/produtos");
 	}
 	
-	@RequestMapping(value="editar",method = RequestMethod.POST)
+	@PostMapping("/editar")
 	@CacheEvict(value="produtosHome", allEntries=true)
 	public ModelAndView editar(Integer id){
 		Produto produto = produtoDao.findOne(id);

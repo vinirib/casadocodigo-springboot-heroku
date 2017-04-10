@@ -16,8 +16,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -25,27 +28,31 @@ public class Produto {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable=false)
+	@NotBlank(message="Digite um título")
 	private String titulo;
-	@Column(nullable=false, columnDefinition="TEXT")
+
+	@NotBlank(message="Digite a descrição")
+	@Column(columnDefinition = "TEXT")
 	private String descricao;
-	@Column(nullable=false)
+	@NotNull(message="Preencha o campo páginas")
+	@Min(value=20,message="Produto deve conter no mínimo 20 páginas")
 	private int paginas;
-	@Transient
-	private String imageFile;
-	
 	@ElementCollection(fetch = FetchType.EAGER)
-	private List<Preco> precos = new ArrayList<>();
+	@NotEmpty(message="Preencha os preços")
+	private List<Preco> tipoPrecos = new ArrayList<Preco>();
 
 	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull(message="Digite a data de lançamento")
 	private Calendar dataLancamento;
+	@NotBlank(message="Digite a url da imagem")
 	private String sumarioPath;
 
 	@ElementCollection(targetClass=Categoria.class)
 	@CollectionTable(name="produto_categoria", joinColumns = @JoinColumn(name = "categoria_id"))
 	@Column(name="categoria", nullable=false)
 	@Enumerated(EnumType.STRING)
-	private List<Categoria> categorias;
+	@NotEmpty(message="Escolha uma categoria")
+	private List<Categoria> categorias = new ArrayList<>();
 	
 	public void setId(int id) {
 		this.id = id;
@@ -79,12 +86,12 @@ public class Produto {
 		this.paginas = paginas;
 	}
 
-	public List<Preco> getPrecos() {
-		return precos;
+	public List<Preco> getTipoPrecos() {
+		return tipoPrecos;
 	}
 
-	public void setPrecos(List<Preco> precos) {
-		this.precos = precos;
+	public void setTipoPrecos(List<Preco> precos) {
+		this.tipoPrecos = precos;
 	}
 
 	public Calendar getDataLancamento() {
@@ -101,14 +108,6 @@ public class Produto {
 
 	public void setSumarioPath(String sumarioPath) {
 		this.sumarioPath = sumarioPath;
-	}
-	
-	public String getImageFile() {
-		return imageFile;
-	}
-	
-	public void setImageFile(String imageFile) {
-		this.imageFile = imageFile;
 	}
 
 	public List<Categoria> getCategorias() {
@@ -147,7 +146,7 @@ public class Produto {
 	}
 
 	public BigDecimal precoPara(TipoPreco tipoPreco) {
-	    return precos.stream().filter(preco -> preco.getPreco().equals(tipoPreco)).findFirst().get().getValor();        
+	    return tipoPrecos.stream().filter(preco -> preco.getPreco().equals(tipoPreco)).findFirst().get().getValor();        
 	}
 	
 }

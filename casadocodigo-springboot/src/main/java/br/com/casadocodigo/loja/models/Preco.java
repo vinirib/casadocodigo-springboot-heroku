@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.DecimalMin;
 
 @Embeddable
 public class Preco {
 
 	@Column(nullable=false)
+	@DecimalMin(value="1.00")
 	private BigDecimal valor;
 	@Column(nullable=false)
 	private TipoPreco preco;

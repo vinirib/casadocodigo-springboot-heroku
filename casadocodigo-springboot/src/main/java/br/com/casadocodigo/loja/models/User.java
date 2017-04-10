@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
@@ -23,13 +23,13 @@ public class User {
  
 	private Long id;
 	
-	@NotEmpty(message="Digite o nome do usuário")
+	@NotBlank(message="Digite o nome do usuário")
 	@Size(min=6,max=30, message="Nome deve conter entre 6 à 30 caracteres")
 	private String name;
 	@Email(message="Digite um email válido")
-	@NotEmpty(message="Digite o email do usuário")
+	@NotBlank(message="Digite o email do usuário")
 	private String username;
-	@NotEmpty(message="Digite sua senha")
+	@NotBlank(message="Digite sua senha")
 	private String password;
     private String passwordConfirm;
     private Set<Role> roles = new HashSet<>();
