@@ -21,37 +21,36 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Produto {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+		@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@NotBlank(message="Digite um título")
+		@NotBlank(message="Digite um título")
 	private String titulo;
-
-	@NotBlank(message="Digite a descrição")
-	@Column(columnDefinition = "TEXT")
+		@NotBlank(message="Digite a descrição")
+		@Column(columnDefinition = "TEXT")
 	private String descricao;
-	@NotNull(message="Preencha o campo páginas")
-	@Min(value=20,message="Produto deve conter no mínimo 20 páginas")
+		@NotNull(message="Preencha o campo páginas")
+		@Min(value=20,message="Produto deve conter no mínimo 20 páginas")
 	private int paginas;
-	@ElementCollection(fetch = FetchType.EAGER)
-	@NotEmpty(message="Preencha os preços")
+		@ElementCollection(fetch = FetchType.EAGER)
+		@NotEmpty(message="Preencha os preços")
 	private List<Preco> tipoPrecos = new ArrayList<Preco>();
-
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@NotNull(message="Digite a data de lançamento")
+		@DateTimeFormat(pattern="dd/MM/yyyy")
+		@NotNull(message="Digite a data de lançamento")
 	private Calendar dataLancamento;
-	@NotBlank(message="Digite a url da imagem")
+		@NotBlank(message="Digite a url da imagem")
+		@URL
 	private String sumarioPath;
-
-	@ElementCollection(targetClass=Categoria.class)
-	@CollectionTable(name="produto_categoria", joinColumns = @JoinColumn(name = "categoria_id"))
-	@Column(name="categoria", nullable=false)
-	@Enumerated(EnumType.STRING)
-	@NotEmpty(message="Escolha uma categoria")
+		@ElementCollection(targetClass=Categoria.class)
+		@CollectionTable(name="produto_categoria", joinColumns = @JoinColumn(name = "categoria_id"))
+		@Column(name="categoria", nullable=false)
+		@Enumerated(EnumType.STRING)
+		@NotEmpty(message="Escolha uma categoria")
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	public void setId(int id) {

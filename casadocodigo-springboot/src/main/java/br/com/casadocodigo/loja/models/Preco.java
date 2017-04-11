@@ -2,17 +2,17 @@ package br.com.casadocodigo.loja.models;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class Preco {
 
-	@Column(nullable=false)
-	@DecimalMin(value="1.00")
+		@NotNull
+		@DecimalMin(value="1.00")
 	private BigDecimal valor;
-	@Column(nullable=false)
+		@NotNull
 	private TipoPreco preco;
 	public BigDecimal getValor() {
 		return valor;

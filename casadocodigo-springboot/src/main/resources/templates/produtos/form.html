@@ -49,20 +49,20 @@
 			</div>
 			<div class="form-group">
 				<h3>Preços</h3>
+				<label class="error" th:if="${#fields.hasErrors('tipoPrecos')}" th:errors="*{tipoPrecos}">Name error</label>
 				<span th:each="tipoPreco,status : ${tipo}">
 					<label><span th:text="${tipoPreco}"></span></label>
-					<input type="hidden" th:name="*{tipoPrecos[__${status.index}__].preco}" th:value="${tipoPreco.name}" class="form-control"/>
+					<input type="hidden" th:name="|tipoPrecos[${status.index}].preco|" th:value="${tipoPreco.name}" class="form-control"/>
 					<input type="text" th:field="*{tipoPrecos[__${status.index}__].valor}" class="form-control preco"/>
 				</span>
-				<label class="error" th:if="${#fields.hasErrors('tipoPrecos')}" th:errors="*{tipoPrecos}">Name error</label>
 			</div>
 			<div class="form-group">
+				<label class="error" th:if="${#fields.hasErrors('categorias')}" th:errors="*{categorias}">Name error</label>
 				<h3>Categoria</h3><br/>
 				<span th:each="categoria,status : ${categorias}">
 					<span th:text="${categoria}"></span> 
 					<input type="checkbox" th:field="*{categorias}" th:value="${categoria}" class="form-control categorias"/>
 				</span>
-				<label class="error" th:if="${#fields.hasErrors('categorias')}" th:errors="*{categorias}">Name error</label>
 			</div>
 			<div class="form-group">
 				<label>URL sumário</label>

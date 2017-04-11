@@ -52,7 +52,7 @@ public class ProdutosController {
 //		String filePath = fileSaver.gravar("casadocodigo-imgs", sumario);
 		produtoDao.save(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
-		return "redirect:/produtos";
+		return "redirect:/produtos/listar";
 	}
 
 	@GetMapping("/detalhe/{id}")
