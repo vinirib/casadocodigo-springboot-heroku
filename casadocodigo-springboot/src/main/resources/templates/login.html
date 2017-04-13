@@ -80,5 +80,34 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			</form>
 		</div>
+		<br/>
+		<br/>
+		<div class="container">
+		     <div class="row">
+			    <div class="span9 centred">
+					<center><h2>Present Users</h2></center>		
+			    </div>
+			  </div>
+		  <table class="table table-striped" style="width: 60%" align="center">
+		    <thead>
+		      <tr>
+		        <th>Login</th>
+		        <th>Password</th>
+		        <th>Role</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>admin</td>
+		        <td>123456</td>
+		        <td>ADMIN</td>
+		      </tr>
+		      <tr th:each="user : ${users}">
+		        <td><span th:text="${user.username}"></span></td>
+		        <td><span th:text="${user.password}"></span></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
 	</body>
 </html>

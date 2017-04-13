@@ -21,7 +21,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -44,7 +43,6 @@ public class Produto {
 		@NotNull(message="Digite a data de lançamento")
 	private Calendar dataLancamento;
 		@NotBlank(message="Digite a url da imagem")
-		@URL
 	private String sumarioPath;
 		@ElementCollection(targetClass=Categoria.class)
 		@CollectionTable(name="produto_categoria", joinColumns = @JoinColumn(name = "categoria_id"))

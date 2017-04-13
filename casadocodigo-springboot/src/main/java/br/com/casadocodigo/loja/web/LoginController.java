@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.google.common.collect.Sets;
 
 import br.com.casadocodigo.loja.domain.User;
 import br.com.casadocodigo.loja.repository.RoleRepository;
+import br.com.casadocodigo.loja.repository.UserRepository;
 import br.com.casadocodigo.loja.service.UserService;
 
 @Controller
@@ -25,12 +27,17 @@ public class LoginController  {
 	@Autowired
 	private RoleRepository roleRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@GetMapping("/login")
-    public String login(){
+    public String login(Model model){
+		model.addAttribute("users",userRepository.findByUsernameNotIn("admin@casadocodigo.com.br"));
         return "login";
     }
     
-    @GetMapping("/logout")
+
+	@GetMapping("/logout")
     public ModelAndView logout(){
     	return new ModelAndView("redirect:/produtos");
     }
