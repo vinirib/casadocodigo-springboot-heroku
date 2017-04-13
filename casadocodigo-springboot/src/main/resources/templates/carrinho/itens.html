@@ -63,7 +63,7 @@
 			  <h2>Você já conhece os outros livros da Casa do Código?</h2>
 			  <ul id="collection" class="related-books">          
 			      <li th:each="produto : ${produtos}" class="col-left">
-						<a th:href="@{/produtos/detalhe/{id}(id=${produto.id})}" class="block clearfix book-suggest" data-book="${produto.titulo}">
+						<a th:href="@{/produtos/detalhe/} + ${produto.id}" class="block clearfix book-suggest" data-book="${produto.titulo}">
 							<img width="113px" height="160px" th:attr="src=@{${produto.sumarioPath}},alt=${produto.titulo},title=${produto.titulo}" />
 				        </a>
 			      </li>          
