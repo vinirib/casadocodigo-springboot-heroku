@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja;
+package br.com.casadocodigo.loja.config;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;

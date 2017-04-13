@@ -28,7 +28,7 @@
 				            <tr th:each="produto : ${produtos}">
 				                <td><a th:href="@{/produtos/detalhe?id=produto.id}" ><span th:text="${produto.titulo}"></span></a></td>
 				                <td><span th:text="${produto.descricao}"></span></td>
-				                <td><span th:text="${produto.precos }"></span></td>
+				                <td><span th:text="${produto.tipoPrecos}"></span></td>
 				                <td><span th:text="${produto.paginas}"></span></td>
 			                    <td>
 			                  		<form th:action="@{/produtos/editar}" method="post">

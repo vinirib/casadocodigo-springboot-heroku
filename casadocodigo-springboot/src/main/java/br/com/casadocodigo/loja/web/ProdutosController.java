@@ -49,7 +49,7 @@ public class ProdutosController {
 		if (result.hasErrors()) {
 			 return "produtos/form";
 		}
-//		String filePath = fileSaver.gravar("casadocodigo-imgs", sumario);
+		produto.setNew(true);
 		produtoDao.save(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 		return "redirect:/produtos/listar";

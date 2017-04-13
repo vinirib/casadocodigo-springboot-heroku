@@ -21,5 +21,7 @@ public interface ProdutoRepository extends CrudRepository<Produto, Integer>{
 	
 	@Query("select sum(preco.valor) from Produto p inner join p.tipoPrecos preco where preco.preco = :tipoPreco")
 	BigDecimal sumPricesByType(@Param("tipoPreco")TipoPreco tipoPreco);
+
+	List<Produto> findByIsNew(Boolean isNew);
 	
 }

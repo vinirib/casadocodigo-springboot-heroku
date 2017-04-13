@@ -50,7 +50,7 @@
 					    <tr>
 					        <td colspan="3">
 							<form th:action="@{/pagamento/finalizar}" method="post">
-					            <input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
+					            <input type="submit" class="checkout" name="checkout" value="Finalizar compra" data-toggle="modal" data-target="#exampleModal"/>
 	    					  </form>
 					        </td>
 					        <td></td>
@@ -70,6 +70,29 @@
 			  </ul>
 			  
 			  <h2><a th:href="@{/}" >Retornar para lista de produtos</a></h2>
-			</section> 
+			</section>
+			<!-- Trigger the modal with a button -->
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+			
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Modal Header</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p>Some text in the modal.</p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			
+			  </div>
+			</div>
 	</body>
 </html>

@@ -53,6 +53,17 @@ public class Produto {
 		@NotEmpty(message="Escolha uma categoria")
 	private List<Categoria> categorias = new ArrayList<>();
 	
+	
+	private boolean isNew;
+	
+	public boolean isNew() {
+		return isNew;
+	}
+
+	public void setNew(boolean isNew) {
+		this.isNew = isNew;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -89,8 +100,8 @@ public class Produto {
 		return tipoPrecos;
 	}
 
-	public void setTipoPrecos(List<Preco> precos) {
-		this.tipoPrecos = precos;
+	public void setTipoPrecos(List<Preco> tipoPrecos) {
+		this.tipoPrecos = tipoPrecos;
 	}
 
 	public Calendar getDataLancamento() {
