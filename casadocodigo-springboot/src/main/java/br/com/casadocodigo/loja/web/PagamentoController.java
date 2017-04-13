@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.controllers;
+package br.com.casadocodigo.loja.web;
 
 import java.util.concurrent.Callable;
 
@@ -11,9 +11,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.casadocodigo.loja.models.CarrinhoCompras;
-import br.com.casadocodigo.loja.models.Pagamento;
-import br.com.casadocodigo.loja.models.User;
+import br.com.casadocodigo.loja.domain.CarrinhoCompras;
+import br.com.casadocodigo.loja.domain.Pagamento;
+import br.com.casadocodigo.loja.domain.User;
 
 @RequestMapping("/pagamento")
 @Controller

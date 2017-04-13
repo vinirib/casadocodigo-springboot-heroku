@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import br.com.casadocodigo.loja.models.Produto;
+import br.com.casadocodigo.loja.domain.Produto;
 
 public class ProdutoValidation implements Validator {
 

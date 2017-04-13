@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.casadocodigo.loja.models.Role;
-import br.com.casadocodigo.loja.models.User;
+import br.com.casadocodigo.loja.domain.Role;
+import br.com.casadocodigo.loja.domain.User;
 import br.com.casadocodigo.loja.repository.UserRepository;
 
 @Service

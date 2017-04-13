@@ -12,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import br.com.casadocodigo.loja.models.Categoria;
-import br.com.casadocodigo.loja.models.Preco;
-import br.com.casadocodigo.loja.models.Produto;
-import br.com.casadocodigo.loja.models.Role;
-import br.com.casadocodigo.loja.models.TipoPreco;
-import br.com.casadocodigo.loja.models.User;
-import br.com.casadocodigo.loja.repository.ProdutoDAO;
+import br.com.casadocodigo.loja.domain.Categoria;
+import br.com.casadocodigo.loja.domain.Preco;
+import br.com.casadocodigo.loja.domain.Produto;
+import br.com.casadocodigo.loja.domain.Role;
+import br.com.casadocodigo.loja.domain.TipoPreco;
+import br.com.casadocodigo.loja.domain.User;
+import br.com.casadocodigo.loja.repository.ProdutoRepository;
 import br.com.casadocodigo.loja.repository.RoleRepository;
 import br.com.casadocodigo.loja.repository.UserRepository;
 import br.com.casadocodigo.loja.service.UserService;
@@ -30,7 +30,7 @@ public class CriadorDeProdutos {
 	private UserService userService;
 
 	@Autowired
-	private ProdutoDAO produtoDAO;
+	private ProdutoRepository produtoDAO;
 	
     @Autowired
     private UserRepository  userRepository;

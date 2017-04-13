@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.controllers;
+package br.com.casadocodigo.loja.web;
 
 
 import java.util.Map;

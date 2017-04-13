@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.controllers;
+package br.com.casadocodigo.loja.web;
 
 import javax.validation.Valid;
 
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Sets;
 
-import br.com.casadocodigo.loja.models.User;
+import br.com.casadocodigo.loja.domain.User;
 import br.com.casadocodigo.loja.repository.RoleRepository;
 import br.com.casadocodigo.loja.service.UserService;
 

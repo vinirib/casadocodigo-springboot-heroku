@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.models;
+package br.com.casadocodigo.loja.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

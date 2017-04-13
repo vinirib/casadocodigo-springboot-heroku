@@ -10,43 +10,26 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.format.datetime.DateFormatter;
-import org.springframework.format.datetime.DateFormatterRegistrar;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.google.common.cache.CacheBuilder;
 
-import br.com.casadocodigo.loja.models.CarrinhoCompras;
+import br.com.casadocodigo.loja.domain.CarrinhoCompras;
 
 @Configuration
 @EnableCaching
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-	@Bean
-	public RequestContextListener requestContextListener() {
-		return new RequestContextListener();
-	}
 
 	@Bean(name = "carrinhoCompras")
 	public CarrinhoCompras carrinhoCompras() {
 		CarrinhoCompras carrinhoCompras = new CarrinhoCompras();
 		return carrinhoCompras;
-	}
-
-	@Bean
-	public FormattingConversionService mvConversionService() {
-		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-		DateFormatterRegistrar registrar = new DateFormatterRegistrar();
-		registrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
-		registrar.registerFormatters(conversionService);
-		return conversionService;
 	}
 
 	@Bean
@@ -67,10 +50,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	// Change Locale of Application
+	@Bean
 	public LocaleResolver localeResolver() {
 	    CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
 	    cookieLocaleResolver.setDefaultLocale(new Locale("pt", "BR"));
 	    return cookieLocaleResolver;
+	}
+	
+	@Bean
+	public SessionLocaleResolver sessionLocaleResolver() {
+	    SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+	    localeResolver.setDefaultLocale(new Locale("pt", "BR"));
+	    return localeResolver;
 	}
 	
     @Override

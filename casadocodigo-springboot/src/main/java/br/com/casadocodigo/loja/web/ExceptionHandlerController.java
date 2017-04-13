@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.controllers;
+package br.com.casadocodigo.loja.web;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

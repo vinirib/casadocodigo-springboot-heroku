@@ -8,17 +8,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import br.com.casadocodigo.loja.models.Categoria;
-import br.com.casadocodigo.loja.models.Produto;
-import br.com.casadocodigo.loja.models.TipoPreco;
+import br.com.casadocodigo.loja.domain.Categoria;
+import br.com.casadocodigo.loja.domain.Produto;
+import br.com.casadocodigo.loja.domain.TipoPreco;
 
-public interface ProdutoDAO extends CrudRepository<Produto, Integer>{
+public interface ProdutoRepository extends CrudRepository<Produto, Integer>{
 	
 	@Query("select q from Produto q  order by rand()")
 	List<Produto> limitedList(Pageable pageable);
 
-	@Query("select p from Produto p join fetch p.categorias categorias where categorias = :categoria")
-	List<Produto> listByCategory(@Param("categoria")Categoria Categoria);
+	List<Produto> findAllByCategorias(Categoria Categoria);
 	
 	@Query("select sum(preco.valor) from Produto p inner join p.tipoPrecos preco where preco.preco = :tipoPreco")
 	BigDecimal sumPricesByType(@Param("tipoPreco")TipoPreco tipoPreco);

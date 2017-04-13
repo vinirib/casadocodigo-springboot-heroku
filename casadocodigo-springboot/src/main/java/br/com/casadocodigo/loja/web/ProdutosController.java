@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.controllers;
+package br.com.casadocodigo.loja.web;
 
 import java.io.UnsupportedEncodingException;
 
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.casadocodigo.loja.models.Categoria;
-import br.com.casadocodigo.loja.models.Produto;
-import br.com.casadocodigo.loja.models.TipoPreco;
-import br.com.casadocodigo.loja.repository.ProdutoDAO;
+import br.com.casadocodigo.loja.domain.Categoria;
+import br.com.casadocodigo.loja.domain.Produto;
+import br.com.casadocodigo.loja.domain.TipoPreco;
+import br.com.casadocodigo.loja.repository.ProdutoRepository;
 
 @Controller
 @RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired
-	private ProdutoDAO produtoDao;
+	private ProdutoRepository produtoDao;
 
 	@GetMapping("/listar")
 	public ModelAndView listar() throws UnsupportedEncodingException {

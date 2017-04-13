@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.controllers;
+package br.com.casadocodigo.loja.web;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.casadocodigo.loja.models.CarrinhoCompras;
-import br.com.casadocodigo.loja.models.CarrinhoItem;
-import br.com.casadocodigo.loja.models.Produto;
-import br.com.casadocodigo.loja.models.TipoPreco;
-import br.com.casadocodigo.loja.repository.ProdutoDAO;
+import br.com.casadocodigo.loja.domain.CarrinhoCompras;
+import br.com.casadocodigo.loja.domain.CarrinhoItem;
+import br.com.casadocodigo.loja.domain.Produto;
+import br.com.casadocodigo.loja.domain.TipoPreco;
+import br.com.casadocodigo.loja.repository.ProdutoRepository;
 
 @Controller
 @RequestMapping("/carrinho")
@@ -24,7 +24,7 @@ import br.com.casadocodigo.loja.repository.ProdutoDAO;
 public class CarrinhoComprasController {
 	
 	@Autowired
-	private ProdutoDAO produtoDao;
+	private ProdutoRepository produtoDao;
 	
 	@Autowired
 	private CarrinhoCompras carrinhoCompras;

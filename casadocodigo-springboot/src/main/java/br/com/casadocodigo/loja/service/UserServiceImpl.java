@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.casadocodigo.loja.models.User;
+import br.com.casadocodigo.loja.domain.User;
 import br.com.casadocodigo.loja.repository.RoleRepository;
 import br.com.casadocodigo.loja.repository.UserRepository;
 
