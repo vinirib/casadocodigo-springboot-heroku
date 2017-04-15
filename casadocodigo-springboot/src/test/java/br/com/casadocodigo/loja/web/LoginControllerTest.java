@@ -1,8 +1,12 @@
 package br.com.casadocodigo.loja.web;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import javax.servlet.Filter;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -55,6 +59,10 @@ public class LoginControllerTest {
                 .build();
     }
     
+    @Test
+    public void test(){
+    	assertTrue(true);
+    }
 //    @Test
 //    @WithMockUser(username="admin@casadocodigo.com.br", password="123456", roles={"ADMIN"})
 //    public void loginTest() throws Exception{
