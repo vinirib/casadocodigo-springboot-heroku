@@ -8,58 +8,57 @@
 		<div th:include="fragments/bodyHeader" th:remove="tag"></div>
 		<section class="container middle">
 			  <h2 id="cart-title">Seu carrinho de compras</h2>
-			    <table id="cart-table">
-			      <colgroup>
-			        <col class="item-col"/>
-			        <col class="item-price-col"/>
-			        <col class="item-quantity-col"/>
-			        <col class="line-price-col"/>
-			        <col class="delete-col"/>
-			      </colgroup>
-			      <thead>
-			        <tr>
-			          <th class="cart-img-col" width="10%">Imagem</th>
-			          <th width="55%">Item</th>
-			          <th width="10%">Preço</th>
-			          <th width="10%">Quantidade</th>
-			          <th width="10%">Total</th>
-			          <th width="5%"></th>
-			        </tr>
-			      </thead>
-			      <tbody>
-					    <tr th:each="item : ${@carrinhoCompras.itens}">
-					        <td class="cart-img-col" style="padding-left:20px">
-					        	<img width="71px" height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}" />
-					        </td>
-					        <td class="item-title"><span th:text="${item.produto.titulo}"></span></td>
-					        <td class="numeric-cell"><span th:text="${item.tipoPreco}"></span></td>
-					        <td class="quantity-input-cell">
-					            <input type="number" min="0" readonly="readonly" id="quantidade" name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
-					        </td>
-					        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal(item)}"></span></td>
-							<td class="remove-item">
-							    <form th:action="@{/carrinho/remover}" method="post">
-							        <input type="hidden" name="produtoId" th:value="${item.produto.id}"/>
-							        <input type="hidden" name="tipoPreco" th:value="${item.tipoPreco}"/>
-							        <input type="image" src="/excluir.png" alt="Excluir" title="Excluir" />
-							    </form>
-							</td>			    
-						</tr>
-			      </tbody>
-					<tfoot>
-					    <tr>
-					        <td colspan="3">
-							<form th:action="@{/pagamento/finalizar}" method="post">
-					            <input type="submit" class="checkout" name="checkout" value="Finalizar compra"/>
-	    					  </form>
-					        </td>
-					        <td></td>
-					        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"></span></td>
-					        <td></td>
-					    </tr>
-					</tfoot>
-			    </table>
-			  
+				<form th:action="@{/pagamento/finalizar}" method="post" id="form-finalizar">
+				    <table id="cart-table">
+				      <colgroup>
+				        <col class="item-col"/>
+				        <col class="item-price-col"/>
+				        <col class="item-quantity-col"/>
+				        <col class="line-price-col"/>
+				        <col class="delete-col"/>
+				      </colgroup>
+				      <thead>
+				        <tr>
+				          <th class="cart-img-col" width="10%">Imagem</th>
+				          <th width="55%">Item</th>
+				          <th width="10%">Preço</th>
+				          <th width="10%">Quantidade</th>
+				          <th width="10%">Total</th>
+				          <th width="5%"></th>
+				        </tr>
+				      </thead>
+				      <tbody>
+						    <tr th:each="item : ${@carrinhoCompras.itens}">
+						        <td class="cart-img-col" style="padding-left:20px">
+						        	<img width="71px" height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}" />
+						        </td>
+						        <td class="item-title"><span th:text="${item.produto.titulo}"></span></td>
+						        <td class="numeric-cell"><span th:text="${item.tipoPreco}"></span></td>
+						        <td class="quantity-input-cell">
+						            <input type="number" min="0" readonly="readonly" id="quantidade" name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
+						        </td>
+						        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal(item)}"></span></td>
+								<td class="remove-item">
+								    <form th:action="@{/carrinho/remover}" method="post">
+								        <input type="hidden" name="produtoId" th:value="${item.produto.id}"/>
+								        <input type="hidden" name="tipoPreco" th:value="${item.tipoPreco}"/>
+								        <input type="image" src="/excluir.png" alt="Excluir" title="Excluir" />
+								    </form>
+								</td>			    
+							</tr>
+				      </tbody>
+						<tfoot>
+						    <tr>
+						        <td colspan="3">
+						            <input type="button" class="checkout" name="checkout" value="Finalizar compra" data-toggle="modal" data-target="#myModal"/>
+						        </td>
+						        <td></td>
+						        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"></span></td>
+						        <td></td>
+						    </tr>
+						</tfoot>
+				    </table>
+				  </form>
 			  <h2>Você já conhece os outros livros da Casa do Código?</h2>
 			  <ul id="collection" class="related-books">          
 			      <li th:each="produto : ${produtos}" class="col-left">
@@ -71,6 +70,30 @@
 			  
 			  <h2><a th:href="@{/}" >Retornar para lista de produtos</a></h2>
 			</section>
-			<div th:include="fragments/footer" th:remove="tag"/>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <center><h5 class="modal-title" id="exampleModalLabel">Obrigado por testar!</h5></center>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Breve enviaremos um email com seus pedidos!
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" id="finalizar-modal" data-dismiss="modal">Finalizar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div> 
+		<div th:include="fragments/footer" th:remove="tag"/>
+		<script th:inline="javascript">
+			$('#finalizar-modal').click(function(){
+				$('#form-finalizar').submit();
+			})
+		</script>
 	</body>
 </html>

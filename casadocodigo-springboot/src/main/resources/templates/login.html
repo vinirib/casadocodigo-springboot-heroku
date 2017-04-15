@@ -55,7 +55,7 @@
 			<p><span th:text="${falha}"></span></p>
 			<form th:action="@{/login}" method="post" class="form-signin">
 				<input  type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-				<h2 class="form-signin-heading">Casa do Código</h2>
+				<h2 class="form-signin-heading"><a th:href="@{/}">Casa do Código</a></h2>
 				<label for="inputEmail" class="sr-only">Email address</label>
 				 	<input	id="inputEmail" class="form-control" placeholder="Email address"  type="email" name="username"/> 
 				<label for="inputPassword" class="sr-only">Password</label> 
@@ -77,7 +77,7 @@
 							<a th:href="@{/login/criar}">Criar Conta</a>
 						</label>
 				</div>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>
 			</form>
 		</div>
 		<br/>

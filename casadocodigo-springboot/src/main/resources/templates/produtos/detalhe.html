@@ -65,5 +65,11 @@
 
 	</article>
 	<div th:include="fragments/footer" th:remove="tag"/>
+	<script th:inline="javascript">
+		$(document).ready(function() {
+		    $('#EBOOK').prop( "checked", true );
+		});
+	
+	</script>
 </body>
 </html>

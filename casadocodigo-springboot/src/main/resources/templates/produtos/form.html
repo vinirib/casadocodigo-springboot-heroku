@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<link rel="icon"
-			href="//cdn.shopify.com/s/files/1/0155/7645/t/227/assets/favicon.png?10819079710396025174"
-			type="image/ico" />
-		<script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
-		<title>Casa do Código - Criar Produto</title>
-		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-		<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
-		<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<head th:replace="fragments/headAdminTag :: headAdminTag">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<style type="text/css">
 			.categorias {
@@ -73,7 +62,7 @@
 		</form>
 	</div>
 </body>
-<script type="text/javascript">
+<script th:inline="javascript">
 $(document).ready(function(){
 	  $('.dataLancamento').mask('00/00/0000');
 	  $('.preco').mask('000.00', {reverse: true});

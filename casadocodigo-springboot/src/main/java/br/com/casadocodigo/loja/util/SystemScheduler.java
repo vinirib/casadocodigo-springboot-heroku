@@ -29,7 +29,7 @@ public class SystemScheduler {
     private UserRepository userRepository;
     
 	@Scheduled(fixedRate=5*60*1000)// five minutes
-	@CacheEvict(value="produtosHome", allEntries=true)
+	@CacheEvict(value={"produtosHome","collections"}, allEntries=true)
 	public void removeProdutosNew(){
 		logger.info("Verifyng database to get new Produtos "+ dateFormat.format(new Date()));
 		List<Produto> newProdutos = repository.findByIsNew(true);
@@ -41,7 +41,7 @@ public class SystemScheduler {
 		List<User> newUsers = userRepository.findByUsernameNotIn("admin@casadocodigo.com.br");
 		
 		if (!newUsers.isEmpty()) {
-			logger.info("Excluding new Produtos of database");
+			logger.info("Excluding new Usuarios of database");
 			newUsers.forEach(userRepository::delete);
 		}
 	}

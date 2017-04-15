@@ -25,11 +25,11 @@ import br.com.casadocodigo.loja.repository.ProdutoRepository;
 public class ProdutosController {
 
 	@Autowired
-	private ProdutoRepository produtoDao;
+	private ProdutoRepository produtoRepository;
 
 	@GetMapping("/listar")
 	public ModelAndView listar() throws UnsupportedEncodingException {
-		Iterable<Produto> listaDeProdutos = produtoDao.findAll();
+		Iterable<Produto> listaDeProdutos = produtoRepository.findAll();
 		ModelAndView modelAndView = new ModelAndView("produtos/lista");
 		modelAndView.addObject("produtos", listaDeProdutos);
 		return modelAndView;
@@ -44,13 +44,13 @@ public class ProdutosController {
 	}
 
 	@PostMapping("/gravar")
-	@CacheEvict(value="produtosHome", allEntries=true)
+	@CacheEvict(value={"produtosHome","collections"}, allEntries=true)
 	public String gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			 return "produtos/form";
 		}
 		produto.setNew(true);
-		produtoDao.save(produto);
+		produtoRepository.save(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 		return "redirect:/produtos/listar";
 	}
@@ -58,24 +58,24 @@ public class ProdutosController {
 	@GetMapping("/detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id")Integer id){
 		ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
-		Produto produto = produtoDao.findOne(id);
+		Produto produto = produtoRepository.findOne(id);
 		modelAndView.addObject("produto", produto);
 		return modelAndView;
 	}
 	
 	@PostMapping("/remover")
-	@CacheEvict(value="produtosHome", allEntries=true)
+	@CacheEvict(value={"produtosHome","collections"}, allEntries=true)
 	public ModelAndView remover(Integer id, RedirectAttributes redirectAttributes){
-		Produto produto = produtoDao.findOne(id);
-		produtoDao.delete(produto);
+		Produto produto = produtoRepository.findOne(id);
+		produtoRepository.delete(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto removido com sucesso!");
 		return new ModelAndView("redirect:/produtos");
 	}
 	
 	@PostMapping("/editar")
-	@CacheEvict(value="produtosHome", allEntries=true)
+	@CacheEvict(value={"produtosHome","collections"}, allEntries=true)
 	public ModelAndView editar(Integer id){
-		Produto produto = produtoDao.findOne(id);
+		Produto produto = produtoRepository.findOne(id);
 		ModelAndView view = new ModelAndView("produtos/form");
 		view.addObject("tipos", TipoPreco.values());
 		view.addObject("categorias", Categoria.values());

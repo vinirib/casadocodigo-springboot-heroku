@@ -18,19 +18,20 @@ import br.com.casadocodigo.loja.repository.ProdutoRepository;
 public class HomeController {
 	
 	@Autowired
-	private ProdutoRepository produtoDao;
+	private ProdutoRepository produtoRepository;
 	
 	@RequestMapping("/")
 	@Cacheable(value="produtosHome")
 	public ModelAndView index(){
-		Iterable<Produto> produtos = produtoDao.findAll();
+		Iterable<Produto> produtos = produtoRepository.findAll();
 		ModelAndView model = new ModelAndView("home");
 		model.addObject("produtos", produtos);
 		return model;
 	}
 	@RequestMapping(value="/collection/{categoria}", method=RequestMethod.GET)
+	@Cacheable(value="collections")
 	public ModelAndView collection(@PathVariable String categoria){
-		List<Produto> produtos = produtoDao.findAllByCategorias(Categoria.valueOf(categoria));
+		List<Produto> produtos = produtoRepository.findAllByCategorias(Categoria.valueOf(categoria));
 		ModelAndView model = new ModelAndView("home");
 		model.addObject("produtos", produtos);
 		return model;
