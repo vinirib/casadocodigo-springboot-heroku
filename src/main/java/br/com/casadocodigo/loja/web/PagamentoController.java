@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.loja.domain.CarrinhoCompras;
 import br.com.casadocodigo.loja.domain.Pagamento;
-import br.com.casadocodigo.loja.domain.User;
+import br.com.casadocodigo.loja.domain.Usuario;
 
 @RequestMapping("/pagamento")
 @Controller
@@ -37,7 +37,7 @@ public class PagamentoController {
 	private static final String urlPagamento = "http://book-payment.herokuapp.com/payment"; 
 	
     @RequestMapping(value="/finalizar", method=RequestMethod.POST)
-    public Callable<ModelAndView> finalizar(@AuthenticationPrincipal User usuario, RedirectAttributes model, HttpServletRequest request, HttpServletResponse response){
+    public Callable<ModelAndView> finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model, HttpServletRequest request, HttpServletResponse response){
     	return () -> {
     		
 	    	try {

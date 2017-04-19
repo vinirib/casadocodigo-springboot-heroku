@@ -13,22 +13,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Sets;
 
-import br.com.casadocodigo.loja.domain.User;
+import br.com.casadocodigo.loja.domain.Usuario;
 import br.com.casadocodigo.loja.repository.RoleRepository;
-import br.com.casadocodigo.loja.repository.UserRepository;
-import br.com.casadocodigo.loja.service.UserService;
+import br.com.casadocodigo.loja.repository.UsuarioRepository;
+import br.com.casadocodigo.loja.service.UsuarioService;
 
 @Controller
 public class LoginController  {
 
 	@Autowired
-	private UserService userService;
+	private UsuarioService userService;
 	
 	@Autowired
 	private RoleRepository roleRepository;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UsuarioRepository userRepository;
 	
 	@GetMapping("/login")
     public String login(Model model){
@@ -43,12 +43,12 @@ public class LoginController  {
     }
     
     @GetMapping("/login/criar")
-    public String criar(User user){
+    public String criar(Usuario user){
     	return "formLogin";
     }
     
     @PostMapping("/login/gravar")
-    public String gravar(@Valid User user, BindingResult bindingResult, String role, RedirectAttributes redirectAttributes){
+    public String gravar(@Valid Usuario user, BindingResult bindingResult, String role, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
             return "formLogin";
         }

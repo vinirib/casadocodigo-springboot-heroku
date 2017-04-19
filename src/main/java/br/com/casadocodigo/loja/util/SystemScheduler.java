@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.casadocodigo.loja.builders.ProdutoBuilder;
 import br.com.casadocodigo.loja.domain.Produto;
-import br.com.casadocodigo.loja.domain.User;
+import br.com.casadocodigo.loja.domain.Usuario;
 import br.com.casadocodigo.loja.repository.ProdutoRepository;
-import br.com.casadocodigo.loja.repository.UserRepository;
+import br.com.casadocodigo.loja.repository.UsuarioRepository;
 
 @Component
 public class SystemScheduler {
@@ -27,7 +27,7 @@ public class SystemScheduler {
     private ProdutoRepository repository;
 	
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
     
 	@Scheduled(fixedRate=5*60*1000)// five minutes
 	@CacheEvict(value={"produtosHome","collections"}, allEntries=true)
@@ -39,7 +39,7 @@ public class SystemScheduler {
 			newProdutos.forEach(repository::delete);
 		}
 		logger.info("Verifyng database to get new Users "+ dateFormat.format(new Date()));
-		List<User> newUsers = userRepository.findByUsernameNotIn("admin@casadocodigo.com.br");
+		List<Usuario> newUsers = userRepository.findByUsernameNotIn("admin@casadocodigo.com.br");
 		
 		if (!newUsers.isEmpty()) {
 			logger.info("Excluding new Usuarios of database");

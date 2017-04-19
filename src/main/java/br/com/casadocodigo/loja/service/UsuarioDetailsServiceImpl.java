@@ -13,18 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.casadocodigo.loja.domain.Role;
-import br.com.casadocodigo.loja.domain.User;
-import br.com.casadocodigo.loja.repository.UserRepository;
+import br.com.casadocodigo.loja.domain.Usuario;
+import br.com.casadocodigo.loja.repository.UsuarioRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UsuarioDetailsServiceImpl implements UserDetailsService{
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        Usuario user = userRepository.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (Role role : user.getRoles()){

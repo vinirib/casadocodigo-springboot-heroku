@@ -13,23 +13,23 @@ import org.springframework.stereotype.Component;
 import br.com.casadocodigo.loja.builders.ProdutoBuilder;
 import br.com.casadocodigo.loja.domain.Produto;
 import br.com.casadocodigo.loja.domain.Role;
-import br.com.casadocodigo.loja.domain.User;
+import br.com.casadocodigo.loja.domain.Usuario;
 import br.com.casadocodigo.loja.repository.ProdutoRepository;
 import br.com.casadocodigo.loja.repository.RoleRepository;
-import br.com.casadocodigo.loja.repository.UserRepository;
-import br.com.casadocodigo.loja.service.UserService;
+import br.com.casadocodigo.loja.repository.UsuarioRepository;
+import br.com.casadocodigo.loja.service.UsuarioService;
 
 @Component
 public class CriadorDeProdutos {
 
 	@Autowired
-	private UserService userService;
+	private UsuarioService userService;
 
 	@Autowired
 	private ProdutoRepository produtoDAO;
 	
     @Autowired
-    private UserRepository  userRepository;
+    private UsuarioRepository  userRepository;
     
     @Autowired
     private RoleRepository roleRepository;
@@ -49,12 +49,12 @@ public class CriadorDeProdutos {
 	}
 
 	private void verifyUsers() {
-		User usuario = userService.findByUsername("admin@casadocodigo.com.br");
+		Usuario usuario = userService.findByUsername("admin@casadocodigo.com.br");
 		if (usuario == null) {
 			/**
 			 * Creating admin user;
 			 */
-			User adminUser = new User();
+			Usuario adminUser = new Usuario();
 			adminUser.setName("Administrador");
 			adminUser.setUsername("admin@casadocodigo.com.br");
 			

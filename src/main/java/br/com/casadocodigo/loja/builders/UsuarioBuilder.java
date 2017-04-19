@@ -7,33 +7,33 @@ import java.util.List;
 import java.util.Random;
 
 import br.com.casadocodigo.loja.domain.Role;
-import br.com.casadocodigo.loja.domain.User;
+import br.com.casadocodigo.loja.domain.Usuario;
 
 public class UsuarioBuilder {
 
-    private List<User> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<>();
     
     private static Random random = new Random();
     
-    private UsuarioBuilder(User usuario) {
+    private UsuarioBuilder(Usuario usuario) {
         usuarios.add(usuario);
 
     }
 
     public static UsuarioBuilder newUsuario(String role) {
-        User usuario = create(role);
+        Usuario usuario = create(role);
         return new UsuarioBuilder(usuario);
     }
 
     public static UsuarioBuilder newUsuario() {
-        User usuario = create("admin");
+        Usuario usuario = create("admin");
         return new UsuarioBuilder(usuario);
     }
 
-    private static User create(String role) {
+    private static Usuario create(String role) {
     	Role role2 = new Role();
     	role2.setName(role);
-    	User usuario = new User();
+    	Usuario usuario = new Usuario();
     	usuario.setId(random.nextLong());
     	usuario.setName("Usuario" + random.nextInt(200));
     	usuario.setPassword("123");
@@ -50,11 +50,11 @@ public class UsuarioBuilder {
         return this;
     }
 
-    public User buildOne() {
+    public Usuario buildOne() {
         return usuarios.get(0);
     }
 
-    public List<User> buildAll() {
+    public List<Usuario> buildAll() {
         return usuarios;
     }
 }

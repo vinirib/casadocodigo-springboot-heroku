@@ -19,8 +19,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import br.com.casadocodigo.loja.config.SecurityConfiguration;
 import br.com.casadocodigo.loja.repository.RoleRepository;
-import br.com.casadocodigo.loja.repository.UserRepository;
-import br.com.casadocodigo.loja.service.UserService;
+import br.com.casadocodigo.loja.repository.UsuarioRepository;
+import br.com.casadocodigo.loja.service.UsuarioService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = { LoginController.class })
@@ -32,13 +32,13 @@ public class LoginControllerTest {
     private MockMvc mockMvc;
 	    
     @MockBean
-    private UserService userService;
+    private UsuarioService userService;
 
     @MockBean
     private RoleRepository roleRepository;
     
     @MockBean
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
     
     @MockBean
     private UserDetailsService userDetailsService;

@@ -18,7 +18,7 @@ public class Role {
     @NotNull
     private String name;
     
-    private Set<User> users = new HashSet<>();
+    private Set<Usuario> users = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,11 +39,11 @@ public class Role {
     }
 
     @ManyToMany(mappedBy = "roles")
-    public Set<User> getUsers() {
+    public Set<Usuario> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Set<Usuario> users) {
         this.users = users;
     }
 }
