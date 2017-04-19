@@ -57,7 +57,7 @@ public class ProdutosController {
 
 	@GetMapping("/detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id")Integer id){
-		ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
+		ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
 		Produto produto = produtoRepository.findOne(id);
 		modelAndView.addObject("produto", produto);
 		return modelAndView;
