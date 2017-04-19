@@ -10,3 +10,8 @@ Se for testar localmente, é necessário que crie localmente uma base de dados c
 
 Mysql-community
 Conhecimentos de Spring boot
+
+
+### Aplicação publicada no Heroku para teste de navegabilidade
+
+https://viniciusribeirogtkspringboot.herokuapp.com/
