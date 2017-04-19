@@ -57,13 +57,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	    return cookieLocaleResolver;
 	}
 	
-	@Bean
-	public SessionLocaleResolver sessionLocaleResolver() {
-	    SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-	    localeResolver.setDefaultLocale(new Locale("pt", "BR"));
-	    return localeResolver;
-	}
-	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor());
