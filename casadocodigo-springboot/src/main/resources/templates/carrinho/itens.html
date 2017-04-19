@@ -28,6 +28,14 @@
 				        </tr>
 				      </thead>
 				      <tbody>
+						<span th:if="${@carrinhoCompras == null}">
+							<tr th:each="item : ${@carrinhoCompras.itens}">
+						        <td colspan="6">
+						        	<center>Carrinho vazio</center>
+						        </td>
+							</tr>
+						</span>
+				      	<span th:if="${@carrinhoCompras != null}">
 						    <tr th:each="item : ${@carrinhoCompras.itens}">
 						        <td class="cart-img-col" style="padding-left:20px">
 						        	<img width="71px" height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}" />
@@ -46,6 +54,7 @@
 								    </form>
 								</td>			    
 							</tr>
+						</span>
 				      </tbody>
 						<tfoot>
 						    <tr>

@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import br.com.casadocodigo.loja.builders.ProdutoBuilder;
 import br.com.casadocodigo.loja.domain.Produto;
 import br.com.casadocodigo.loja.domain.User;
 import br.com.casadocodigo.loja.repository.ProdutoRepository;
@@ -44,5 +45,15 @@ public class SystemScheduler {
 			logger.info("Excluding new Usuarios of database");
 			newUsers.forEach(userRepository::delete);
 		}
+	}
+	
+	@Scheduled(fixedRate=100*60*1000,initialDelay=100*60*1000)// 100 minutes
+	@CacheEvict(value={"produtosHome","collections"}, allEntries=true)
+	public void rebaseProdutos(){
+		logger.info("Deleting all Produtos on database to rebuilding "+ dateFormat.format(new Date()));
+		repository.deleteAll();
+		logger.info("Creating default Produtos "+ dateFormat.format(new Date()));
+		List<Produto> defaultProdutos = ProdutoBuilder.createDefaultTemplateProdutos();
+		repository.save(defaultProdutos);
 	}
 }

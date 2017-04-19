@@ -11,7 +11,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +35,7 @@ public class Produto {
 		@NotNull(message="Preencha o campo páginas")
 		@Min(value=20,message="Produto deve conter no mínimo 20 páginas")
 	private int paginas;
-		@ElementCollection(fetch = FetchType.EAGER)
+		@ElementCollection
 		@NotEmpty(message="Preencha os preços")
 	private List<Preco> tipoPrecos = new ArrayList<Preco>();
 		@DateTimeFormat(pattern="dd/MM/yyyy")
