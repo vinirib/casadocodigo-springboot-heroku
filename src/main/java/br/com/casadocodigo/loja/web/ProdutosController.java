@@ -49,7 +49,9 @@ public class ProdutosController {
 		if (result.hasErrors()) {
 			 return "produtos/form";
 		}
-		produto.setNew(true);
+		if (produto.getId() == 0) {
+			produto.setNew(true);
+		}
 		produtoRepository.save(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 		return "redirect:/produtos/listar";
@@ -77,7 +79,7 @@ public class ProdutosController {
 	public ModelAndView editar(Integer id){
 		Produto produto = produtoRepository.findOne(id);
 		ModelAndView view = new ModelAndView("produtos/form");
-		view.addObject("tipos", TipoPreco.values());
+		view.addObject("tipo", TipoPreco.values());
 		view.addObject("categorias", Categoria.values());
 		view.addObject("produto", produto);
 		return view;
