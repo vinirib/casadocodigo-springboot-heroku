@@ -15,7 +15,7 @@
 	<body>
 	<div class="container">
 		<h1>Cadastro de Usuário</h1>
-		<form action="#" th:action="@{/login/gravar}" method="post" th:object="${user}" id="registrationlogin">
+		<form action="#" th:action="@{/login/gravar}" method="post" th:object="${usuario}" id="registrationlogin">
 			<div class="form-group">
 				<label>Nome</label> 
 				<input type="text" th:field="*{name}" class="form-control" id="name"/>

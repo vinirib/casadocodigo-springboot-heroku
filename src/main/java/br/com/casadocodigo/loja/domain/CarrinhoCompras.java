@@ -29,6 +29,15 @@ public class CarrinhoCompras  implements Serializable{
 		itens.put(item, getQuantidade(item) + 1);
 		this.quantidade ++;
 	}
+	
+	public void remove(CarrinhoItem item){
+		itens.put(item, getQuantidade(item) - 1 );
+		this.quantidade --;
+	}
+	public void removeItemFromCarrinho(CarrinhoItem item){
+		itens.remove(item);
+		this.quantidade --;
+	}
 
 	public int getQuantidade(CarrinhoItem item) {
 		if (!itens.containsKey(item)) {
@@ -62,5 +71,8 @@ public class CarrinhoCompras  implements Serializable{
 		Produto produto = new Produto();
 		produto.setId(produtoId);
 		itens.remove(new CarrinhoItem(produto, tipoPreco));
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 }

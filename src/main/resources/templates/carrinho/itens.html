@@ -36,14 +36,14 @@
 							</tr>
 						</span>
 				      	<span th:if="${@carrinhoCompras != null}">
-						    <tr th:each="item : ${@carrinhoCompras.itens}">
+						    <tr th:each="item, status : ${@carrinhoCompras.itens}">
 						        <td class="cart-img-col" style="padding-left:20px">
 						        	<img width="71px" height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}" />
 						        </td>
 						        <td class="item-title"><span th:text="${item.produto.titulo}"></span></td>
-						        <td class="numeric-cell"><span th:text="${item.tipoPreco}"></span></td>
+						        <td class="numeric-cell" ><span th:text="${item.tipoPreco}"></span></td>
 						        <td class="quantity-input-cell">
-						            <input type="number" min="0" readonly="readonly" id="quantidade" name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
+						            <input type="number" min="0" data-th-attr="tipoPreco=${item.tipoPreco}, produtoId=${item.produto.id}" class="carrinho-quantidade" th:id="'quantidade-' + ${status.index}" name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
 						        </td>
 						        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal(item)}"></span></td>
 								<td class="remove-item">
@@ -98,11 +98,38 @@
 			    </div>
 			  </div>
 			</div> 
+			<form class="form-update-quantidade" th:action="@{/carrinho/changeQuantidadeItens}" method="post">
+				<input type="hidden" name="produtoId" value="" id="form-update-id"/>
+				<input type="hidden" name="tipo" value="" id="form-update-tipo"/>
+				<input type="hidden" name="quantidade" value="" id="form-update-quantidade-produto"/>
+			</form>
 		<div th:include="fragments/footer" th:remove="tag"/>
 		<script th:inline="javascript">
-			$('#finalizar-modal').click(function(){
-				$('#form-finalizar').submit();
-			})
+			var quantidadeArray = [];
+			$(document).ready(function() {
+				$('.carrinho-quantidade').each(function(index){
+					quantidadeArray[index] = $(this).val();
+				})
+				
+// 				$.each('.carrinho-quantidade', function(index){
+				$('.carrinho-quantidade').each(function(index){
+					$('#quantidade-'+index).change(function(){
+// 							var oldQuantidade = parseInt(quantidadeArray[index]);
+// 							var newQuantidade = parseInt($(this).val());
+// 							if(newQuantidade > oldQuantidade){
+							var id=$(this).attr("produtoid");
+							var tipoPreco=$(this).attr("tipopreco");
+							$('#form-update-id').val(id);
+							$('#form-update-tipo').val(tipoPreco);
+							$('#form-update-quantidade-produto').val($(this).val());
+							$('.form-update-quantidade').submit();
+					});
+				});
+
+				$('#finalizar-modal').click(function(){
+					$('#form-finalizar').submit();
+				})
+			});
 		</script>
 	</body>
 </html>

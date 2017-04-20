@@ -41,6 +41,22 @@ public class CarrinhoComprasController {
 	    carrinhoCompras.add(carrinhoItem);
 	    return modelAndView;
 	}
+	
+	@PostMapping("/changeQuantidadeItens")
+	public String addAsync(Integer produtoId, TipoPreco tipo, int quantidade) {
+		CarrinhoItem carrinhoItem = criaItem(produtoId, tipo);
+		int quantidadeAtual = carrinhoCompras.getQuantidade(carrinhoItem);
+		if(quantidade == 0){
+			carrinhoCompras.removeItemFromCarrinho(carrinhoItem);
+		} else {
+			if (quantidadeAtual < quantidade) {
+				carrinhoCompras.add(carrinhoItem);
+			} else {
+				carrinhoCompras.remove(carrinhoItem);
+			}
+		}
+		return "redirect:/carrinho/itens";
+	}
 
 	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
 		Produto produto = produtoDao.findOne(produtoId);
@@ -72,5 +88,7 @@ public class CarrinhoComprasController {
 		request.getSession().removeAttribute("CarrinhoCompras");
 		return "/logout";
 	}
+	
+	
 
 }
