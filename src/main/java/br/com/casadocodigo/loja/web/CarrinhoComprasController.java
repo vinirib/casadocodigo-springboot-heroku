@@ -43,7 +43,7 @@ public class CarrinhoComprasController {
 	}
 	
 	@PostMapping("/changeQuantidadeItens")
-	public String addAsync(Integer produtoId, TipoPreco tipo, int quantidade) {
+	public String changeQuantidadeItens(Integer produtoId, TipoPreco tipo, int quantidade) {
 		CarrinhoItem carrinhoItem = criaItem(produtoId, tipo);
 		int quantidadeAtual = carrinhoCompras.getQuantidade(carrinhoItem);
 		if(quantidade == 0){
