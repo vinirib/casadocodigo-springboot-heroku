@@ -158,6 +158,26 @@
 				</configuration>
 			</plugin>
 
+<!-- 	YUI Compressor to compress javascript and CSS -->
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<gzip>true</gzip>
+					<force>true</force>
+					<nosuffix>true</nosuffix>
+					<jswarn>false</jswarn>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
