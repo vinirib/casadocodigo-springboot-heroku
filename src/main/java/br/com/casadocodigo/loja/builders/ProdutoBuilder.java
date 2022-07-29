@@ -171,7 +171,7 @@ public class ProdutoBuilder {
 						+ "ser usados em conjunto e onde cada um dos métodos se complementa, além de conhecer dicas para adotar as "
 						+ "metodologias no seu dia a dia de trabalho. ");
 
-		agile.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/agile-featured_large.png?v=1411485880");
+		agile.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/Agile_Amazon_large.jpg?v=1631561120");
 		setPrecosOnProdutos(agile);
 		agile.setDataLancamento(Calendar.getInstance());
 		agile.setPaginas(150);
@@ -187,7 +187,7 @@ public class ProdutoBuilder {
 						+ "quebra essa enorme barreira, mostrando claramente essa mudança de paradigma, além de focar em tópicos "
 						+ "importantes, as APIs principais e frameworks como o Express e o Socket.IO.");
 
-		node.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/nodejs-featured_large.png?v=1411486494");
+		node.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/KKrmIrJLg4wrrI3mGQL_VlVUenEaSaNVRscaD6HlQvU_size_mode_2_size_1024x768_large.jpeg?v=1446834644");
 		setPrecosOnProdutos(node);
 		node.setDataLancamento(Calendar.getInstance());
 		node.setPaginas(161);
@@ -218,7 +218,7 @@ public class ProdutoBuilder {
 						+ "Caelum e a Locaweb, invista em suas ideias.");
 
 		startup.setSumarioPath(
-				"//cdn.shopify.com/s/files/1/0155/7645/products/cover_f0c223aa-023e-415b-8389-a942213aae39_large.jpg?v=1486151929");
+				"//cdn.shopify.com/s/files/1/0155/7645/products/GuiadaStartup_ebook_large.jpg?v=1631721902");
 		setPrecosOnProdutos(startup);
 		startup.setDataLancamento(Calendar.getInstance());
 		startup.setPaginas(388);
