@@ -79,7 +79,7 @@ public class ProdutoBuilder {
 						+ "quebra de problemas em partes menores que podem ser resolvidas com algoritmos. ");
 
 		algoritmosEmJava.setSumarioPath(
-				"//cdn.shopify.com/s/files/1/0155/7645/products/eBook-Algoritmos_large.jpg?v=1484936519");
+				"//cdn.shopify.com/s/files/1/0155/7645/products/AlgoritmosemJAVA_Amazon_large.jpg?v=1631300171");
 		setPrecosOnProdutos(algoritmosEmJava);
 		algoritmosEmJava.setDataLancamento(Calendar.getInstance());
 		algoritmosEmJava.setPaginas(440);
@@ -109,7 +109,7 @@ public class ProdutoBuilder {
 						+ "finalmente entenda callbacks, seletores e AJAX sem ficar preso ao copy and paste. Tudo isso com a versão 2.x, a mais recente do framework.");
 
 		jquery.setSumarioPath(
-				"//cdn.shopify.com/s/files/1/0155/7645/products/javascript-jquery-featured_large.png?v=1416319134");
+				"//cdn.shopify.com/s/files/1/0155/7645/products/cover_07b67aad-28bd-47fd-ae2c-968432b697c1_large.jpg?v=1631670404");
 		setPrecosOnProdutos(jquery);
 		jquery.setDataLancamento(Calendar.getInstance());
 		jquery.setPaginas(193);
@@ -124,7 +124,7 @@ public class ProdutoBuilder {
 						+ " objetos com CSS e várias outras técnicas que farão diferença no dia a dia do trabalho com os estilos e abrirão novas possibilidades para você explorar ainda mais o CSS. ");
 
 		css.setSumarioPath(
-				"//cdn.shopify.com/s/files/1/0155/7645/products/css-eficiente-featured_large.png?v=1435245145");
+				"//cdn.shopify.com/s/files/1/0155/7645/products/cover_01987b09-b64e-45c2-8575-728cce314abf_large.jpg?v=1631658704");
 		setPrecosOnProdutos(css);
 		css.setDataLancamento(Calendar.getInstance());
 		css.setPaginas(131);
@@ -138,7 +138,7 @@ public class ProdutoBuilder {
 						+ " transações, programação orientada a aspectos e também o fantástico módulo MVC, o SpringMVC.");
 
 		spring.setSumarioPath(
-				"//cdn.shopify.com/s/files/1/0155/7645/products/spring-framework-featured_large.png?v=1411567960");
+				"//cdn.shopify.com/s/files/1/0155/7645/products/VireojogocomSpringFramework_ebook_large.jpg?v=1631647617");
 		setPrecosOnProdutos(spring);
 		spring.setDataLancamento(Calendar.getInstance());
 		spring.setPaginas(296);
@@ -155,7 +155,7 @@ public class ProdutoBuilder {
 						+ "a passo, você vai perder o medo de encarar a linha de comando e os terminais, para tirar o máximo de proveito"
 						+ " desse onipresente sistema operacional. ");
 
-		linux.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/linux-featured_large.png?v=1411487268");
+		linux.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/cover_7c9b974b-b420-4e17-b334-d53e9c2ecc6b_large.jpg?v=1631591679");
 		setPrecosOnProdutos(linux);
 		linux.setDataLancamento(Calendar.getInstance());
 		linux.setPaginas(150);
