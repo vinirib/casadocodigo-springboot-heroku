@@ -187,7 +187,7 @@ public class ProdutoBuilder {
 						+ "quebra essa enorme barreira, mostrando claramente essa mudança de paradigma, além de focar em tópicos "
 						+ "importantes, as APIs principais e frameworks como o Express e o Socket.IO.");
 
-		node.setSumarioPath("/cdn.shopify.com/s/files/1/0155/7645/produc…size_mode_2_size_1024x768_large.jpeg?v=1446834644");
+		node.setSumarioPath("//cdn.shopify.com/s/files/1/0155/7645/products/KKrmIrJLg4wrrI3mGQL_VlVUenEaSaNVRscaD6HlQvU_size_mode_2_size_1024x768_large.jpeg?v=1446834644");
 		setPrecosOnProdutos(node);
 		node.setDataLancamento(Calendar.getInstance());
 		node.setPaginas(161);
