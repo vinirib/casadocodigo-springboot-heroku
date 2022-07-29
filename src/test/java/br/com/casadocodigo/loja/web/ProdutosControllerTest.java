@@ -77,7 +77,7 @@ public class ProdutosControllerTest {
 			.willReturn(ProdutoBuilder.newProduto().buildOne());
     	mockMvc.perform(get("/produtos/detalhe/1"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("/produtos/detalhe"))
+			.andExpect(view().name("produtos/detalhe"))
 			.andExpect(model().attributeExists("produto"));
 	}
 
@@ -100,7 +100,6 @@ public class ProdutosControllerTest {
 				.param("id", "3"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("produtos/form"))
-		.andExpect(model().attributeExists("tipos"))
 		.andExpect(model().attributeExists("categorias"))
 		.andExpect(model().attributeExists("produto"));
 	}
