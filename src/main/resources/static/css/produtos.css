@@ -90,6 +90,7 @@
 .variant-label {
   font-weight: bold;
   font-size:130%;
+  margin-left: 5px;
 }
 
 .compare-at-price{

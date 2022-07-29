@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:replace="fragments/headTag :: headTag">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<!-- HTML 4 -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<!-- HTML5 -->
+		<meta charset="utf-8"/>
 		<title>Casa do Código</title>
 	</head>
 	<body>
 		<div th:include="fragments/bodyHeader" th:remove="tag"/>
 		<section id="index-section" class="container middle">
-			<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
+			<h1 class="cdc-call"><span th:text = "#{home.mensagem.aviso}"/></h1>
 			<ul class="clearfix book-collection">
 				<li th:each="produto : ${produtos}">
 					<a th:href="@{/produtos/detalhe/} + ${produto.id}" class="block clearfix">
@@ -16,42 +19,39 @@
 					</a>
 				</li>
 			<center th:if="${produtos.isEmpty()}">
-				<h3 class="product-title">Não há produtos cadastrados</h3>
+				<h3 class="product-title"><span th:text = "#{home.sem.produtos}"/></h3>
 			</center>
 			</ul>
 	
-			<h2 class="cdc-call">Diferenciais da Casa do Código</h2>
+			<h2 class="cdc-call"><span th:text = "#{home.diferenciais}"/></h2>
 	
 			<ul id="cdc-diferenciais" class="clearfix">
 				<li class="col-left">
-					<h3>E-books sem DRM. Leia onde quiser</h3>
+					<h3><span th:text = "#{home.ebook.titulo}"/></h3>
 					<p>
-						<span class="sprite" id="sprite-drm"></span> Nossos e-books não
-						possuem DRM, ou seja, você pode ler em qualquer computador, tablet
-						e smartphone.
+						<span class="sprite" id="sprite-drm"></span>
+						<span th:text = "#{home.ebook.texto}"/>
 					</p>
 				</li>
 				<li class="col-right">
-					<h3>Autores de renome na comunidade</h3>
+					<h3><span th:text = "#{home.autor.titulo}"/></h3>
 					<p>
-						<span class="sprite" id="sprite-renome"></span> Autores que
-						participam ativamente na comunidade com Open Source, listas de
-						discussão, grupos e mais.
+						<span class="sprite" id="sprite-renome"></span>
+						<span th:text = "#{home.autor.texto}"/>
 					</p>
 				</li>
 				<li class="col-left">
-					<h3>Receba atualizações dos e-books</h3>
+					<h3><span th:text = "#{home.atualizacao.titulo}"/></h3>
 					<p>
-						<span class="sprite" id="sprite-atualizacoes"></span> Quando você
-						compra um e-book, automaticamente tem direito às atualizações e
-						correções dele.
+						<span class="sprite" id="sprite-atualizacoes"></span>
+						<span th:text = "#{home.atualizacao.texto}"/>
 					</p>
 				</li>
 				<li class="col-right">
-					<h3>Livros com curadoria da Caelum</h3>
+					<h3><span th:text = "#{home.curadoria.titulo}"/></h3>
 					<p>
-						<span class="sprite" id="sprite-caelum"></span> Desenvolvedores
-						experientes que avaliam e revisam os livros constantemente.
+						<span class="sprite" id="sprite-caelum"></span>
+						<span th:text = "#{home.curadoria.texto}"/>
 					</p>
 				</li>
 		</ul>
