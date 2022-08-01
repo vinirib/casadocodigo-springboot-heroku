@@ -7,7 +7,7 @@
 	<body>
 		<div th:include="fragments/bodyHeader" th:remove="tag"></div>
 		<section class="container middle">
-			  <h2 id="cart-title">Seu carrinho de compras</h2>
+			  <h2 id="cart-title"><span th:text = "#{carrinho.titulo}"/></h2>
 				<form th:action="@{/pagamento/finalizar}" method="post" id="form-finalizar">
 				    <table id="cart-table">
 				      <colgroup>
@@ -19,10 +19,10 @@
 				      </colgroup>
 				      <thead>
 				        <tr>
-				          <th class="cart-img-col" width="10%">Imagem</th>
-				          <th width="55%">Item</th>
-				          <th width="10%">Preço</th>
-				          <th width="10%">Quantidade</th>
+				          <th class="cart-img-col" width="10%"><span th:text = "#{carrinho.tabela.imagem}"/></th>
+				          <th width="55%"><span th:text = "#{carrinho.tabela.item}"/></th>
+				          <th width="10%"><span th:text = "#{carrinho.tabela.preco}"/></th>
+				          <th width="10%"><span th:text = "#{carrinho.tabela.quantidade}"/></th>
 				          <th width="10%">Total</th>
 				          <th width="5%"></th>
 				        </tr>
@@ -31,7 +31,7 @@
 						<span th:if="${@carrinhoCompras == null}">
 							<tr th:each="item : ${@carrinhoCompras.itens}">
 						        <td colspan="6">
-						        	<center>Carrinho vazio</center>
+						        	<center><span th:text = "#{carrinho.tabela.vazio}"/></center>
 						        </td>
 							</tr>
 						</span>
@@ -50,7 +50,7 @@
 								    <form th:action="@{/carrinho/remover}" method="post">
 								        <input type="hidden" name="produtoId" th:value="${item.produto.id}"/>
 								        <input type="hidden" name="tipoPreco" th:value="${item.tipoPreco}"/>
-								        <input type="image" src="/excluir.png" alt="Excluir" title="Excluir" />
+								        <input type="image" src="/images/excluir.png" alt="Excluir" title="Excluir" />
 								    </form>
 								</td>			    
 							</tr>
@@ -59,7 +59,7 @@
 						<tfoot>
 						    <tr>
 						        <td colspan="3">
-						            <input type="button" class="checkout" name="checkout" value="Finalizar compra" data-toggle="modal" data-target="#myModal"/>
+						            <input type="button" class="checkout" name="checkout" th:value="${#locale.toString()}=='en_US'?'Finish Shopping':'Finalizar compra'" data-toggle="modal" data-target="#myModal"/>
 						        </td>
 						        <td></td>
 						        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"></span></td>
@@ -68,7 +68,7 @@
 						</tfoot>
 				    </table>
 				  </form>
-			  <h2>Você já conhece os outros livros da Casa do Código?</h2>
+			  <h2><span th:text = "#{carrinho.mensagem.outros.livros}"/></h2>
 			  <ul id="collection" class="related-books">          
 			      <li th:each="produto : ${produtos}" class="col-left">
 						<a th:href="@{/produtos/detalhe/} + ${produto.id}" class="block clearfix book-suggest" data-book="${produto.titulo}">
@@ -77,20 +77,19 @@
 			      </li>          
 			  </ul>
 			  
-			  <h2><a th:href="@{/}" >Retornar para lista de produtos</a></h2>
+			  <h2><a th:href="@{/}" ><span th:text = "#{carrinho.mensagem.retornar}"/></a></h2>
 			</section>
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <center><h5 class="modal-title" id="exampleModalLabel">Obrigado por testar!</h5></center>
+			        <center><h5 class="modal-title" id="exampleModalLabel"><span th:text = "#{carrinho.mensagem.final}"/></h5></center>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        Breve enviaremos um email com seus pedidos!
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-primary" id="finalizar-modal" data-dismiss="modal">Finalizar</button>
