@@ -16,24 +16,24 @@ import br.com.casadocodigo.loja.repository.RoleRepository;
 @IntegrationTestCustom
 public class RoleRepositoryTest {
 
-	
-	@Autowired
-	private RoleRepository roleRepository;
-	
-	@Test
-	public void findByName() throws AppException{
-		createRole("ADMIN");
-		createRole("USER");
-		Role roleAdmin = roleRepository.findByName("ADMIN");
-		Role roleUser = roleRepository.findByName("USER");
-		assertEquals(roleAdmin.getName(), "ADMIN");
-		assertEquals(roleUser.getName(), "USER");
-	}
-	
-	private Role createRole(String roleName) {
-		Role role = new Role();
-		role.setName(roleName);
-		roleRepository.save(role);
-		return role;
-	}
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Test
+    public void findByName() throws AppException {
+        createRole("ADMIN");
+        createRole("USER");
+        Role roleAdmin = roleRepository.findByName("ADMIN");
+        Role roleUser = roleRepository.findByName("USER");
+        assertEquals(roleAdmin.getName(), "ADMIN");
+        assertEquals(roleUser.getName(), "USER");
+    }
+
+    private Role createRole(String roleName) {
+        Role role = new Role();
+        role.setName(roleName);
+        roleRepository.save(role);
+        return role;
+    }
 }

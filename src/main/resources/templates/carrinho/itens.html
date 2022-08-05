@@ -1,121 +1,128 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/headTag :: headTag">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title>Casa do Código</title>
-	</head>
-	<body>
-		<div th:include="fragments/bodyHeader" th:remove="tag"></div>
-		<section class="container middle">
-			  <h2 id="cart-title"><span th:text = "#{carrinho.titulo}"/></h2>
-				<form th:action="@{/pagamento/finalizar}" method="post" id="form-finalizar">
-				    <table id="cart-table">
-				      <colgroup>
-				        <col class="item-col"/>
-				        <col class="item-price-col"/>
-				        <col class="item-quantity-col"/>
-				        <col class="line-price-col"/>
-				        <col class="delete-col"/>
-				      </colgroup>
-				      <thead>
-				        <tr>
-				          <th class="cart-img-col" width="10%"><span th:text = "#{carrinho.tabela.imagem}"/></th>
-				          <th width="55%"><span th:text = "#{carrinho.tabela.item}"/></th>
-				          <th width="10%"><span th:text = "#{carrinho.tabela.preco}"/></th>
-				          <th width="10%"><span th:text = "#{carrinho.tabela.quantidade}"/></th>
-				          <th width="10%">Total</th>
-				          <th width="5%"></th>
-				        </tr>
-				      </thead>
-				      <tbody>
-						<span th:if="${@carrinhoCompras == null}">
+<head th:replace="fragments/headTag :: headTag">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <title>Casa do Código</title>
+</head>
+<body>
+<div th:include="fragments/bodyHeader" th:remove="tag"></div>
+<section class="container middle">
+    <h2 id="cart-title"><span th:text="#{carrinho.titulo}"/></h2>
+    <table id="cart-table">
+        <colgroup>
+            <col class="item-col"/>
+            <col class="item-price-col"/>
+            <col class="item-quantity-col"/>
+            <col class="line-price-col"/>
+            <col class="delete-col"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="cart-img-col" width="10%"><span th:text="#{carrinho.tabela.imagem}"/></th>
+            <th width="55%"><span th:text="#{carrinho.tabela.item}"/></th>
+            <th width="10%"><span th:text="#{carrinho.tabela.preco}"/></th>
+            <th width="10%"><span th:text="#{carrinho.tabela.quantidade}"/></th>
+            <th width="10%">Total</th>
+            <th width="5%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <span th:if="${@carrinhoCompras == null}">
 							<tr th:each="item : ${@carrinhoCompras.itens}">
 						        <td colspan="6">
-						        	<center><span th:text = "#{carrinho.tabela.vazio}"/></center>
+						        	<center><span th:text="#{carrinho.tabela.vazio}"/></center>
 						        </td>
 							</tr>
 						</span>
-				      	<span th:if="${@carrinhoCompras != null}">
+        <span th:if="${@carrinhoCompras != null}">
 						    <tr th:each="item, status : ${@carrinhoCompras.itens}">
 						        <td class="cart-img-col" style="padding-left:20px">
-						        	<img width="71px" height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}" />
+						        	<img height="100px" th:attr="src=@{${item.produto.sumarioPath}},alt=${item.produto.titulo},title=${item.produto.titulo}"
+                                         width="71px"/>
 						        </td>
 						        <td class="item-title"><span th:text="${item.produto.titulo}"></span></td>
-						        <td class="numeric-cell" ><span th:text="${item.tipoPreco}"></span></td>
+						        <td class="numeric-cell"><span th:text="${item.tipoPreco}"></span></td>
 						        <td class="quantity-input-cell">
-						            <input type="number" min="0" data-th-attr="tipoPreco=${item.tipoPreco}, produtoId=${item.produto.id}" class="carrinho-quantidade" th:id="'quantidade-' + ${status.index}" name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
+						            <input class="carrinho-quantidade" data-th-attr="tipoPreco=${item.tipoPreco}, produtoId=${item.produto.id}"
+                                           min="0"
+                                           name="quantidade" th:id="'quantidade-' + ${status.index}"
+                                           th:value="${@carrinhoCompras.getQuantidade(item)}" type="number"/>
 						        </td>
 						        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal(item)}"></span></td>
 								<td class="remove-item">
-								    <form th:action="@{/carrinho/remover}" method="post">
-								        <input type="hidden" name="produtoId" th:value="${item.produto.id}"/>
-								        <input type="hidden" name="tipoPreco" th:value="${item.tipoPreco}"/>
-								        <input type="image" src="/images/excluir.png" alt="Excluir" title="Excluir" />
-								    </form>
-								</td>			    
+									<input alt="Excluir" src="/images/excluir.png" th:attr="onclick=|excluirItem('${item.produto.id}', '${item.tipoPreco}')|" title="Excluir"
+                                           type="image"/>
+								</td>
 							</tr>
 						</span>
-				      </tbody>
-						<tfoot>
-						    <tr>
-						        <td colspan="3">
-						            <input type="button" class="checkout" name="checkout" th:value="${#locale.toString()}=='en_US'?'Finish Shopping':'Finalizar compra'" data-toggle="modal" data-target="#myModal"/>
-						        </td>
-						        <td></td>
-						        <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"></span></td>
-						        <td></td>
-						    </tr>
-						</tfoot>
-				    </table>
-				  </form>
-			  <h2><span th:text = "#{carrinho.mensagem.outros.livros}"/></h2>
-			  <ul id="collection" class="related-books">          
-			      <li th:each="produto : ${produtos}" class="col-left">
-						<a th:href="@{/produtos/detalhe/} + ${produto.id}" class="block clearfix book-suggest" data-book="${produto.titulo}">
-							<img width="113px" height="160px" th:attr="src=@{${produto.sumarioPath}},alt=${produto.titulo},title=${produto.titulo}" />
-				        </a>
-			      </li>          
-			  </ul>
-			  
-			  <h2><a th:href="@{/}" ><span th:text = "#{carrinho.mensagem.retornar}"/></a></h2>
-			</section>
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <center><h5 class="modal-title" id="exampleModalLabel"><span th:text = "#{carrinho.mensagem.final}"/></h5></center>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-primary" id="finalizar-modal" data-dismiss="modal">Finalizar</button>
-			      </div>
-			    </div>
-			  </div>
-			</div> 
-			<form class="form-update-quantidade" th:action="@{/carrinho/changeQuantidadeItens}" method="post">
-				<input type="hidden" name="produtoId" value="" id="form-update-id"/>
-				<input type="hidden" name="tipo" value="" id="form-update-tipo"/>
-				<input type="hidden" name="quantidade" value="" id="form-update-quantidade-produto"/>
-			</form>
-		<div th:include="fragments/footer" th:remove="tag"/>
-		<script th:inline="javascript">
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <input class="checkout" data-target="#myModal" data-toggle="modal"
+                       name="checkout"
+                       th:value="${#locale.toString()}=='en_US'?'Finish Shopping':'Finalizar compra'" type="button"/>
+            </td>
+            <td></td>
+            <td class="numeric-cell"><span th:text="${@carrinhoCompras.getTotal()}"></span></td>
+            <td></td>
+        </tr>
+        </tfoot>
+    </table>
+    <h2><span th:text="#{carrinho.mensagem.outros.livros}"/></h2>
+    <ul class="related-books" id="collection">
+        <li class="col-left" th:each="produto : ${produtos}">
+            <a class="block clearfix book-suggest" data-book="${produto.titulo}"
+               th:href="@{/produtos/detalhe/} + ${produto.id}">
+                <img height="160px" th:attr="src=@{${produto.sumarioPath}},alt=${produto.titulo},title=${produto.titulo}"
+                     width="113px"/>
+            </a>
+        </li>
+    </ul>
+
+    <h2><a th:href="@{/}"><span th:text="#{carrinho.mensagem.retornar}"/></a></h2>
+</section>
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <center><h5 class="modal-title" id="exampleModalLabel"><span th:text="#{carrinho.mensagem.final}"/></h5>
+                </center>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" id="finalizar-modal" type="button">Finalizar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="form-finalizar" method="post" th:action="@{/pagamento/finalizar}">
+</form>
+<form class="form-update-quantidade" method="post" th:action="@{/carrinho/changeQuantidadeItens}">
+    <input id="form-update-id" name="produtoId" type="hidden" value=""/>
+    <input id="form-update-tipo" name="tipo" type="hidden" value=""/>
+    <input id="form-update-quantidade-produto" name="quantidade" type="hidden" value=""/>
+</form>
+<form class="form-excluir-item" method="post" th:action="@{/carrinho/remover}">
+    <input id="excluir-produtoId" name="produtoId" type="hidden" value=""/>
+    <input id="excluir-tipoPreco" name="tipoPreco" type="hidden" value=""/>
+</form>
+<div th:include="fragments/footer" th:remove="tag"/>
+<script th:inline="javascript">
 			var quantidadeArray = [];
 			$(document).ready(function() {
 				$('.carrinho-quantidade').each(function(index){
 					quantidadeArray[index] = $(this).val();
 				})
-				
-// 				$.each('.carrinho-quantidade', function(index){
+
 				$('.carrinho-quantidade').each(function(index){
 					$('#quantidade-'+index).change(function(){
-// 							var oldQuantidade = parseInt(quantidadeArray[index]);
-// 							var newQuantidade = parseInt($(this).val());
-// 							if(newQuantidade > oldQuantidade){
 							var id=$(this).attr("produtoid");
 							var tipoPreco=$(this).attr("tipopreco");
 							$('#form-update-id').val(id);
@@ -128,7 +135,14 @@
 				$('#finalizar-modal').click(function(){
 					$('#form-finalizar').submit();
 				})
+
 			});
-		</script>
-	</body>
+			const excluirItem = function(id, preco) {
+				$('#excluir-produtoId').val(id);
+				$('#excluir-tipoPreco').val(preco);
+				$('.form-excluir-item').submit();
+			}
+
+</script>
+</body>
 </html>

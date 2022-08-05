@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<link rel="icon"
-			href="//cdn.shopify.com/s/files/1/0155/7645/t/227/assets/favicon.png?10819079710396025174"
-			type="image/ico" />
-		<script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
-		<title>Casa do Código - Criar usuário</title>
-		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-		<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
-		<link th:href="@{/css/style.css}" rel="stylesheet" />
-	</head>
-	<body>
-	<div class="container">
-		<h1>Cadastro de Usuário</h1>
-		<form action="#" th:action="@{/login/gravar}" method="post" th:object="${usuario}" id="registrationlogin">
-			<div class="form-group">
-				<label>Nome</label> 
-				<input type="text" th:field="*{name}" class="form-control" id="name"/>
-				<label class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</label>
-			</div>
-			<div class="form-group">
-				<label>Login</label> 
-				<input type="text" th:field="*{username}" class="form-control" placeholder="Digite seu email" id="username"/>
-				<label class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</label>
-			</div>
-			<div class="form-group">
-				<label>Senha</label> 
-				<input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Digite uma senha"/>
-				<label class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</label>
-			</div>
-			<div class="form-group">
-				<label>Confirmar Senha</label>
-				<input type="password" th:field="*{passwordConfirm}" id="passwordConfirm" class="form-control" placeholder="Confirme sua senha"/> 
-			</div>
-			<div class="form-group">
-				<label>Tipo de Usuário</label>
-				<select name="role" class="form-control" id="roleUser">
-					<option value="0" label="Select">Selecione</option>
-					<option value="ROLE_ADMIN" label="ADMIN">Admin</option>
-					<option value="ROLE_CLIENT" label="CLIENT">Cliente</option>
-				</select>
-			</div>
-			<button type="submit" id="salvar" >Salvar</button>
-		</form>
-	</div>
+<head>
+    <script th:src="@{/js/jquery-3.1.1.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery.validate.min.js}" type="text/javascript"></script>
+    <title>Casa do Código - Criar usuário</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>Cadastro de Usuário</h1>
+    <form action="#" id="registrationlogin" method="post" th:action="@{/login/gravar}" th:object="${usuario}">
+        <div class="form-group">
+            <label>Nome</label>
+            <input class="form-control" id="name" th:field="*{name}" type="text"/>
+            <label class="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Name error</label>
+        </div>
+        <div class="form-group">
+            <label>Login</label>
+            <input class="form-control" id="username" placeholder="Digite seu email" th:field="*{username}"
+                   type="text"/>
+            <label class="error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Username error</label>
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input class="form-control" id="password" placeholder="Digite uma senha" th:field="*{password}"
+                   type="password"/>
+            <label class="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Password error</label>
+        </div>
+        <div class="form-group">
+            <label>Confirmar Senha</label>
+            <input class="form-control" id="passwordConfirm" placeholder="Confirme sua senha" th:field="*{passwordConfirm}"
+                   type="password"/>
+        </div>
+        <div class="form-group">
+            <label>Tipo de Usuário</label>
+            <select class="form-control" id="roleUser" name="role">
+                <option label="Select" value="0">Selecione</option>
+                <option label="ADMIN" value="ROLE_ADMIN">Admin</option>
+                <option label="CLIENT" value="ROLE_CLIENT">Cliente</option>
+            </select>
+        </div>
+        <button id="salvar" type="submit">Salvar</button>
+    </form>
+</div>
 </body>
 <script type="text/javascript">
 
@@ -103,6 +103,7 @@ $(function() {
 // 			evt.preventDefault();
 // 		}	
 // 	})
+
 
 </script>
 </html>

@@ -19,39 +19,39 @@ import br.com.casadocodigo.loja.repository.UserRepository;
 @IntegrationTestCustom
 public class UsuarioRepositoryTest {
 
-	@Autowired
-	private UserRepository usuarioRepository;
-	
-	@Autowired
-	private RoleRepository roleRepository;
-	
-	@Test
-	public void saveLogin(){
-		User usuario = createUsuario();
-		usuarioRepository.save(usuario);
-		User usuarioSaved = usuarioRepository.findByUsername(usuario.getUsername());
-		assertEquals(usuarioSaved,usuario);
-	}
-	
-	public void emptyUsuario(){
-		User emptyUser = usuarioRepository.findByUsername("something@org.com");
-		assertEquals(emptyUser, null);
-	}
+    @Autowired
+    private UserRepository usuarioRepository;
 
-	private User createUsuario() {
-		Role role = createRole();
-		User usuario = new User();
-		usuario.setName("Vinicius");
-		usuario.setPassword("123456");
-		usuario.setUsername("test@test.com.br");
-		usuario.setRoles(Sets.newHashSet(role));
-		return usuario;
-	}
+    @Autowired
+    private RoleRepository roleRepository;
 
-	private Role createRole() {
-		Role role = new Role();
-		role.setName("ADMIN");
-		roleRepository.save(role);
-		return role;
-	}
+    @Test
+    public void saveLogin() {
+        User usuario = createUsuario();
+        usuarioRepository.save(usuario);
+        User usuarioSaved = usuarioRepository.findByUsername(usuario.getUsername());
+        assertEquals(usuarioSaved, usuario);
+    }
+
+    public void emptyUsuario() {
+        User emptyUser = usuarioRepository.findByUsername("something@org.com");
+        assertEquals(emptyUser, null);
+    }
+
+    private User createUsuario() {
+        Role role = createRole();
+        User usuario = new User();
+        usuario.setName("Vinicius");
+        usuario.setPassword("123456");
+        usuario.setUsername("test@test.com.br");
+        usuario.setRoles(Sets.newHashSet(role));
+        return usuario;
+    }
+
+    private Role createRole() {
+        Role role = new Role();
+        role.setName("ADMIN");
+        roleRepository.save(role);
+        return role;
+    }
 }

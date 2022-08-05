@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @DataJpaTest // This annotation is to use embed database
-@AutoConfigureTestDatabase(replace=Replace.NONE) // This annotation say to don't use embed database 
+@AutoConfigureTestDatabase(replace = Replace.NONE) // This annotation say to don't use embed database
 @ActiveProfiles("integration") // active profile will be application-it.properties
 public @interface IntegrationTestCustom {
 

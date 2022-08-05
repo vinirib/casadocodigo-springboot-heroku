@@ -1,23 +1,22 @@
 package br.com.casadocodigo.loja.domain;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.validation.constraints.NotNull;
+public class Pagamento implements Serializable {
 
-public class Pagamento implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@NotNull
-	private BigDecimal value;
+    @NotNull
+    private final BigDecimal value;
 
-	public Pagamento(BigDecimal value) {
-		this.value = value;
-	}
-	
-	public BigDecimal getValue() {
-		return value;
-	}
+    public Pagamento(BigDecimal value) {
+        this.value = value;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
 
 }
