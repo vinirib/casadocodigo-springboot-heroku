@@ -6,10 +6,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class CasadocodigoSpringbootApplication  {
+public class CasadocodigoSpringbootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CasadocodigoSpringbootApplication.class, args);
-	}
-	
+    public static void main(String[] args) {
+        SpringApplication.run(CasadocodigoSpringbootApplication.class, args);
+    }
+
 }

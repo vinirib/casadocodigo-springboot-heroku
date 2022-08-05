@@ -1,91 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<!-- HTML 4 -->
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<!-- HTML5 -->
-		<meta charset="utf-8"/>
-	</head>
-	<body th:fragment="bodyHeader">
-		<header id="layout-header">
-			<div class="clearfix container">
-				<a href="/" id="logo"> </a>
-				<div id="header-content">
-					<nav id="main-nav">
-						<ul class="clearfix">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- HTML 4 -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <!-- HTML5 -->
+    <meta charset="utf-8"/>
+</head>
+<body th:fragment="bodyHeader">
+<header id="layout-header">
+    <div class="clearfix container">
+        <a href="/" id="logo"> </a>
+        <div id="header-content">
+            <nav id="main-nav">
+                <ul class="clearfix">
 							<span sec:authorize="isAuthenticated() and hasRole('ROLE_ADMIN')">
 								<li><a href="/logout" rel="nofollow">Logout</a></li>
 							</span>
-							<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/produtos/listar}"
-								rel="nofollow"><span th:text = "#{home.titulo.links.listagem}"/></a></li>
-							<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/produtos/form}" rel="nofollow">
-								<span th:text = "#{home.titulo.links.cadastro.produto}"/></a></li>
-							<li sec:authorize="!isAuthenticated()">
-								<a th:href="@{/login}" rel="nofollow">Login</a>
-							</li>
-							<li>
-								<a th:href="@{/carrinho/itens}" rel="nofollow">
-									<span th:text = "#{menu.carrinho(${@carrinhoCompras.getQuantidade()})}"></span>
-     							</a>
-     						</li>
-     						 <li>
-					            <a href="?locale=pt" rel="nofollow">
-					            	<span th:text = "#{menu.pt}"></span>
-					            </a>
-					        </li>
-					        <li>
-					            <a href="?locale=en_US" rel="nofollow">
-					            	<span th:text = "#{menu.en}"></span>
-					            </a>
-					        </li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</header>
-		<nav class="categories-nav">
-			<ul class="container">
-				<li class="category">
-					<a href="/">
-						<span th:text = "#{navegacao.categoria.home}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/AGILE}">
-						<span th:text = "#{navegacao.categoria.agile}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/FRONT_END}">
-						<span th:text = "#{navegacao.categoria.front_end}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/GAMES}">
-						<span th:text = "#{navegacao.categoria.games}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/JAVA}">
-						<span th:text = "#{navegacao.categoria.java}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/MOBILE}">
-						<span th:text = "#{navegacao.categoria.mobile}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/WEB}"> 
-						<span th:text = "#{navegacao.categoria.web}"></span>
-					</a>
-				</li>
-				<li class="category">
-					<a th:href="@{/collection/OUTROS}"> 
-						<span th:text = "#{navegacao.categoria.outros}"></span>
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</body>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a rel="nofollow"
+                                                                 th:href="@{/produtos/listar}"><span
+                            th:text="#{home.titulo.links.listagem}"/></a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a rel="nofollow" th:href="@{/produtos/form}">
+                        <span th:text="#{home.titulo.links.cadastro.produto}"/></a></li>
+                    <li sec:authorize="!isAuthenticated()">
+                        <a rel="nofollow" th:href="@{/login}">Login</a>
+                    </li>
+                    <li>
+                        <a rel="nofollow" th:href="@{/carrinho/itens}">
+                            <span th:text="#{menu.carrinho(${@carrinhoCompras.getQuantidade()})}"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?locale=pt" rel="nofollow">
+                            <span th:text="#{menu.pt}"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?locale=en_US" rel="nofollow">
+                            <span th:text="#{menu.en}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<nav class="categories-nav">
+    <ul class="container">
+        <li class="category">
+            <a href="/">
+                <span th:text="#{navegacao.categoria.home}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/AGILE}">
+                <span th:text="#{navegacao.categoria.agile}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/FRONT_END}">
+                <span th:text="#{navegacao.categoria.front_end}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/GAMES}">
+                <span th:text="#{navegacao.categoria.games}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/JAVA}">
+                <span th:text="#{navegacao.categoria.java}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/MOBILE}">
+                <span th:text="#{navegacao.categoria.mobile}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/WEB}">
+                <span th:text="#{navegacao.categoria.web}"></span>
+            </a>
+        </li>
+        <li class="category">
+            <a th:href="@{/collection/OUTROS}">
+                <span th:text="#{navegacao.categoria.outros}"></span>
+            </a>
+        </li>
+    </ul>
+</nav>
+</body>
 </html>

@@ -1,8 +1,8 @@
 package br.com.casadocodigo.loja.service;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import br.com.casadocodigo.loja.domain.Role;
+import br.com.casadocodigo.loja.domain.Usuario;
+import br.com.casadocodigo.loja.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,12 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.casadocodigo.loja.domain.Role;
-import br.com.casadocodigo.loja.domain.Usuario;
-import br.com.casadocodigo.loja.repository.UsuarioRepository;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
-public class UsuarioDetailsServiceImpl implements UserDetailsService{
+public class UsuarioDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UsuarioRepository userRepository;
 
@@ -27,7 +26,7 @@ public class UsuarioDetailsServiceImpl implements UserDetailsService{
         Usuario user = userRepository.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Role role : user.getRoles()){
+        for (Role role : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 

@@ -1,15 +1,9 @@
 package br.com.casadocodigo.loja.domain;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "role")
@@ -17,7 +11,7 @@ public class Role {
     private Long id;
     @NotNull
     private String name;
-    
+
     private Set<Usuario> users = new HashSet<>();
 
     @Id

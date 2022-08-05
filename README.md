@@ -35,15 +35,18 @@ Para rodar localmente você deverá utilizar:
 - Docker
 - Docker Compose
 
-Execute o container do banco de dados localmente executando este comando  na pasta raiz:
+Execute o container do banco de dados localmente executando este comando na pasta raiz:
+
 ```
 docker-compose up
 ```
+
 Na IDE de sua preferência inclua este parametro em VM options:
 
 ```
 -Dspring.profiles.active=dev
 ```
+
 Com esta variável, você estará utilizando as variáveis de ambiente de dev
 localizadas no arquivo `application-dev.properties`.
 

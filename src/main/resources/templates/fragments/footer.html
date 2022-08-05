@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <head>
-	<!-- HTML 4 -->
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<!-- HTML5 -->
-	<meta charset="utf-8"/>
+    <!-- HTML 4 -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <!-- HTML5 -->
+    <meta charset="utf-8"/>
 </head>
 <body th:fragment="footer">
 <footer id="layout-footer">
-	<div class="clearfix container">
-		<div id="collections-footer">
-			<!-- cdc-footer -->
-			<p class="footer-title"><span th:text = "#{footer.colecao}"/></p>
-			<ul class="footer-text-links">
-				<li><a href="#">Java</a></li>
-				<li><a href="#"><span th:text = "#{footer.desenvolvimento}"/></a></li>
-				<li><a href="#">Mobile</a></li>
-				<li><a href="#">Games</a></li>
-				<li><a href="#">Front End</a></li>
-			</ul>
-			<p class="footer-title"><span th:text = "#{footer.outros.assuntos}"/></p>
-			<ul class="footer-text-links">
-				<li><a href="#">Agile</a></li>
-				<li><a href="#"><span th:text = "#{footer.outros.mais}"/></a></li>
-			</ul>
-		</div>
-		<div id="social-footer">
-			<!-- books-footer -->
-			<p class="footer-title"><span th:text = "#{footer.links.titulo}"/></p>
-			<ul class="footer-text-links">
-				<li><a href="#"><span th:text = "#{footer.links.meusebooks}"/></a></li>
-				<li><a href="#"><span th:text = "#{footer.links.sobre}"/></a></li>
-				<li><a href="#"><span th:text = "#{footer.links.questoes}"/></a></li>
-				<li><a href="#"><span th:text = "#{footer.links.caelum}"/></a></li>
-				<li><a href="#">Code Crushing</a></li>
-				<li><a href="#"	rel="nofollow"><span th:text = "#{footer.links.politicas}"/></a></li>
-			</ul>
-			<p class="footer-title"><span th:text = "#{footer.redes.sociais}"/></p>
-			<ul>
-				<li class="social-links"><a
-					href="#"
-					id="twitter" rel="nofollow">Facebook</a> <a
-					href="#"
-					id="facebook" rel="nofollow">Twitter</a></li>
-			</ul>
-		</div>
-		<div id="newsletter-footer">
-			<!-- social-footer -->
-			<p class="footer-title"><span th:text = "#{footer.novidades}"/></p>
-			<div id="form-newsletter">
-					<ul>
-						<li><input type="hidden" name="pageNumber" value="0" /><input
-							type="hidden" name="backupCache" value="" /><input type="email"
-							name="entry.0.single" value="" class="ss-q-short" id="entry_0"
-							placeholder="seu@email.com" /></li>
-						<li><input type="submit" name="submit" th:value="${#locale.toString()}=='en_US'?'Receive':'Quero Receber!'"
-							id="submit-newsletter" /></li>
-					</ul>
-				<ul>
-					<li class="ie8"><a href="#"><span th:text = "#{footer.novidades.lancamentos}"/></a></li>
-				</ul>
-			</div>
-			<ul class="footer-payments">
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
-	</div>
+    <div class="clearfix container">
+        <div id="collections-footer">
+            <!-- cdc-footer -->
+            <p class="footer-title"><span th:text="#{footer.colecao}"/></p>
+            <ul class="footer-text-links">
+                <li><a href="#">Java</a></li>
+                <li><a href="#"><span th:text="#{footer.desenvolvimento}"/></a></li>
+                <li><a href="#">Mobile</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Front End</a></li>
+            </ul>
+            <p class="footer-title"><span th:text="#{footer.outros.assuntos}"/></p>
+            <ul class="footer-text-links">
+                <li><a href="#">Agile</a></li>
+                <li><a href="#"><span th:text="#{footer.outros.mais}"/></a></li>
+            </ul>
+        </div>
+        <div id="social-footer">
+            <!-- books-footer -->
+            <p class="footer-title"><span th:text="#{footer.links.titulo}"/></p>
+            <ul class="footer-text-links">
+                <li><a href="#"><span th:text="#{footer.links.meusebooks}"/></a></li>
+                <li><a href="#"><span th:text="#{footer.links.sobre}"/></a></li>
+                <li><a href="#"><span th:text="#{footer.links.questoes}"/></a></li>
+                <li><a href="#"><span th:text="#{footer.links.caelum}"/></a></li>
+                <li><a href="#">Code Crushing</a></li>
+                <li><a href="#" rel="nofollow"><span th:text="#{footer.links.politicas}"/></a></li>
+            </ul>
+            <p class="footer-title"><span th:text="#{footer.redes.sociais}"/></p>
+            <ul>
+                <li class="social-links"><a
+                        href="#"
+                        id="twitter" rel="nofollow">Facebook</a> <a
+                        href="#"
+                        id="facebook" rel="nofollow">Twitter</a></li>
+            </ul>
+        </div>
+        <div id="newsletter-footer">
+            <!-- social-footer -->
+            <p class="footer-title"><span th:text="#{footer.novidades}"/></p>
+            <div id="form-newsletter">
+                <ul>
+                    <li><input name="pageNumber" type="hidden" value="0"/><input
+                            name="backupCache" type="hidden" value=""/><input class="ss-q-short"
+                                                                              id="entry_0" name="entry.0.single"
+                                                                              placeholder="seu@email.com" type="email"
+                                                                              value=""/></li>
+                    <li><input id="submit-newsletter" name="submit"
+                               th:value="${#locale.toString()}=='en_US'?'Receive':'Quero Receber!'"
+                               type="submit"/></li>
+                </ul>
+                <ul>
+                    <li class="ie8"><a href="#"><span th:text="#{footer.novidades.lancamentos}"/></a></li>
+                </ul>
+            </div>
+            <ul class="footer-payments">
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
 </footer>
 </body>
 </html>

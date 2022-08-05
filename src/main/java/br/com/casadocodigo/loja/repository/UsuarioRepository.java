@@ -1,12 +1,12 @@
 package br.com.casadocodigo.loja.repository;
 
-import java.util.List;
-
+import br.com.casadocodigo.loja.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.casadocodigo.loja.domain.Usuario;
+import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findByUsername(String username);
-    List<Usuario> findByUsernameNotIn(String username);
+
+    List<Usuario> findByUsernameNot(String username);
 }
