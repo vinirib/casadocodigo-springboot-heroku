@@ -43,7 +43,7 @@ Readme in Portuguese - [HERE](README-PT.md)
 This application is deployed on [Heroku](https://heroku.com/).
 You can access the application on the address bellow:
 
-https://viniciusribeirogtkspringboot.herokuapp.com/
+https://cdcviniciusribeirogtk.herokuapp.com/
 
 Besides, this application is using Heroku free nodes, when you send
 the first request, the nodes may being hibernating, the first request

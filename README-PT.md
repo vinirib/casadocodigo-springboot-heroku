@@ -39,7 +39,7 @@ Projeto realizado para aplicar práticas desenvolvidas nos módulos dos cursos d
 Aplicação publicada na plataforma [Heroku](https://heroku.com/).
 Para utilizar acesse o endereço abaixo:
 
-https://viniciusribeirogtkspringboot.herokuapp.com/
+https://cdcviniciusribeirogtk.herokuapp.com/
 
 Como esta aplicação está utilizando um serviço gratuito do Heroku, pode ser que sua primeira request
 irá inicializar o servidor gerando maior tempo de resposta, aguarde 1 minuto e tente novamente.
