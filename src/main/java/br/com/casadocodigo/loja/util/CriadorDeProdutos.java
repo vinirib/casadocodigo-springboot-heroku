@@ -10,7 +10,7 @@ import br.com.casadocodigo.loja.repository.UsuarioRepository;
 import br.com.casadocodigo.loja.service.UsuarioService;
 import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +31,9 @@ public class CriadorDeProdutos {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private Argon2PasswordEncoder argon2PasswordEncoder;
 
     @PostConstruct
     public void init() {
@@ -56,8 +59,7 @@ public class CriadorDeProdutos {
             adminUser.setName("Administrador");
             adminUser.setUsername("admin@casadocodigo.com.br");
 
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            adminUser.setPassword(encoder.encode("123456"));
+            adminUser.setPassword(argon2PasswordEncoder.encode("123456"));
 
             Role role = new Role();
             role.setName("ROLE_ADMIN");
