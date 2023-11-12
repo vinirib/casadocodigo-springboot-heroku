@@ -21,9 +21,9 @@ Readme in Portuguese - [HERE](README-PT.md)
     - CSS
     - Javascript
 
-### Technologies used after upgrading - 2022
+### Technologies used after upgrading - 2023
 
-- Java 11
+- Java 17
 - Spring Boot 2.7.2
 - Spring Security 5
 - Spring Cache 5

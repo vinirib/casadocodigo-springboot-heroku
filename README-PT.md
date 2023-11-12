@@ -19,7 +19,7 @@ Projeto realizado para aplicar práticas desenvolvidas nos módulos dos cursos d
 
 ### Tecnologias utilizadas após upgrade - 2022
 
-- Java 11
+- Java 17
 - Spring Boot 2.7.2
 - Spring Security 5
 - Spring Cache 5
