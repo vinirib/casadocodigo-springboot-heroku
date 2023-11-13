@@ -17,14 +17,14 @@ Projeto realizado para aplicar práticas desenvolvidas nos módulos dos cursos d
     - CSS
     - Javascript
 
-### Tecnologias utilizadas após upgrade - 2022
+### Tecnologias utilizadas após upgrade - 2023
 
 - Java 17
 - Spring Boot 2.7.2
 - Spring Security 5
 - Spring Cache 5
 - Spring Data JPA 5
-- Postgres 11
+- H2
 - Frontend
   - Thymeleaf
   - HTML
@@ -36,10 +36,10 @@ Projeto realizado para aplicar práticas desenvolvidas nos módulos dos cursos d
 
 ## Utilização
 
-Aplicação publicada na plataforma [Heroku](https://heroku.com/).
+Aplicação publicada na plataforma [fly.io](https://heroku.com/).
 Para utilizar acesse o endereço abaixo:
 
-https://cdcviniciusribeirogtk.herokuapp.com/
+https://casa-do-codigo-vini.fly.dev/
 
 Como esta aplicação está utilizando um serviço gratuito do Heroku, pode ser que sua primeira request
 irá inicializar o servidor gerando maior tempo de resposta, aguarde 1 minuto e tente novamente.
@@ -48,24 +48,15 @@ irá inicializar o servidor gerando maior tempo de resposta, aguarde 1 minuto e 
 
 Para rodar localmente você deverá utilizar:
 
-- Java 8
+- Java 17
 - Docker
-- Docker Compose
 
 Execute o container do banco de dados localmente executando este comando na pasta raiz:
 
 ```
-docker-compose up
+docker build -t casa-do-codigo .
+docker run -d --name casa-do-codigo -p 8080:8080 casa-do-codigo
 ```
-
-Na IDE de sua preferência inclua este parametro em VM options:
-
-```
--Dspring.profiles.active=dev
-```
-
-Com esta variável, você estará utilizando as variáveis de ambiente de dev
-localizadas no arquivo `application-dev.properties`.
 
 ## Aviso
 

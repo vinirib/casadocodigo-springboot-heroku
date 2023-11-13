@@ -105,7 +105,7 @@ public class ProdutoBuilder {
                         + " objetos com CSS e várias outras técnicas que farão diferença no dia a dia do trabalho com os estilos e abrirão novas possibilidades para você explorar ainda mais o CSS. ");
 
         css.setSumarioPath(
-                "https://cdn.shopify.com/s/files/1/0155/7645/products/cover_01987b09-b64e-45c2-8575-728cce314abf_large.jpg?v=1631658704");
+                "https://m.media-amazon.com/images/I/41v46+Gb-gL._SY445_SX342_.jpg");
         setPrecosOnProdutos(css);
         css.setDataLancamento(Calendar.getInstance());
         css.setPaginas(131);

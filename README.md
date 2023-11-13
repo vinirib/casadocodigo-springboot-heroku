@@ -28,7 +28,7 @@ Readme in Portuguese - [HERE](README-PT.md)
 - Spring Security 5
 - Spring Cache 5
 - Spring Data JPA 5
-- Postgres 11
+- H2
 - Frontend
   - Thymeleaf
   - HTML
@@ -40,10 +40,10 @@ Readme in Portuguese - [HERE](README-PT.md)
 
 ## How to use
 
-This application is deployed on [Heroku](https://heroku.com/).
+This application is deployed on [fly.io](https://heroku.com/).
 You can access the application on the address bellow:
 
-https://cdcviniciusribeirogtk.herokuapp.com/
+https://casa-do-codigo-vini.fly.dev/
 
 Besides, this application is using Heroku free nodes, when you send
 the first request, the nodes may being hibernating, the first request
@@ -54,21 +54,15 @@ check again and the application will be ready to navigate.
 
 To run this application locally, you will need:
 
-- OpenJDK 11 +
+- OpenJDK 17 +
 - Docker
-- Docker Compose
 
 First, in the root folder, execute the command bellow to raise
 the database container:
 
 ```
-docker-compose up
-```
-
-In your preferred IDE, add the VM parameter to use dev environment:
-
-```
--Dspring.profiles.active=dev
+docker build -t casa-do-codigo .
+docker run -d --name casa-do-codigo -p 8080:8080 casa-do-codigo
 ```
 
 ### Warning
