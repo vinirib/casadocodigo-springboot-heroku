@@ -1,5 +1,5 @@
 # Stage 1: Build stage
-FROM maven:3.9.5-amazoncorretto-17 AS build
+FROM maven:3.9.6-amazoncorretto-17 AS build
 LABEL MAINTAINER = "Vinicius Ribeiro"
 # create app folder for sources
 RUN mkdir -p /build
