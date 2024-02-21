@@ -18,7 +18,7 @@ RUN mvn package -DskipTests
 
 # Used to analyze dependencies bacause jdeps from JDK 17 has a bug
 # https://stackoverflow.com/questions/69943899/jdeps-cant-print-module-deps-due-to-a-multireleaseexception
-FROM amazoncorretto:21.0.1-alpine as deps
+FROM amazoncorretto:21.0.2-alpine as deps
 
 # required for strip-debug to work
 RUN apk add --no-cache binutils
